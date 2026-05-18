@@ -17,13 +17,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full border-b transition-all  duration-300 ${
         scrolled
           ? "bg-white/70 backdrop-blur-md shadow-sm py-2"
-          : "bg-slate-50 py-4"
+          : "bg-[#E8F5BD] py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between ">
 
         {/* LEFT SIDE */}
         <div className="flex items-center gap-3">
@@ -66,14 +66,14 @@ const Navbar = () => {
 
             <Link
               href="/signup"
-              className="bg-[#A2CB8B] px-3 md:px-4 py-2 rounded-lg font-semibold text-white hover:opacity-90 transition text-sm md:text-base"
+              className="bg-[#84B179] px-3 md:px-4 py-2 rounded-lg font-semibold text-white hover:opacity-90 transition text-sm md:text-base"
             >
               Login
             </Link>
 
             <Link
               href="/signin"
-              className="border border-[#A2CB8B] text-[#A2CB8B] px-3 md:px-4 py-2 rounded-lg font-semibold hover:bg-[#A2CB8B] hover:text-white transition text-sm md:text-base"
+              className="border border-[#84B179] text-[#84B179] px-3 md:px-4 py-2 rounded-lg font-semibold hover:bg-[#84B179] hover:text-white transition text-sm md:text-base"
             >
               Logout
             </Link>
@@ -103,7 +103,7 @@ const Navbar = () => {
               <div className="p-4 border-b">
                 <p className="font-bold text-sm">Welcome back!</p>
               </div>
-{/* className="text-lg font-medium hover:text-[#84B179] transition-colors" */}
+
               <div className="flex flex-col p-2">
                 <Link href="/profile" className="text-lg font-medium hover:text-[#84B179] transition-colors px-3 py-2 hover:bg-slate-100 rounded-lg ">Profile</Link>
                 <Link href="/settings" className="text-lg font-medium hover:text-[#84B179] transition-colors px-3 py-2 hover:bg-slate-100 rounded-lg">Settings</Link>
