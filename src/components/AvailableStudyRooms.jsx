@@ -1,26 +1,74 @@
 import AvailableStudyRoomsCard from "./AvailableStudyRoomsCard";
 
-const fetchRooms = async() => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studyrooms`)
-  const data =await res.json();
-  return data || [];
-}
+const fetchRooms = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/studyrooms`,
+    {
+      cache: "no-store",
+    }
+  );
 
-const AvailableStudyRooms =async () => {
+  const data = await res.json();
+
+  return data || [];
+};
+
+const AvailableStudyRooms = async () => {
   const studyrooms = await fetchRooms();
 
   const rooms = [...studyrooms].slice(0, 6);
+
   return (
-    <div className="">
-      <h2>Available Study Rooms</h2>
-      <div className="grid grid-cols-3 gap-4">
-        {
-          rooms?.map((rooms) => <AvailableStudyRoomsCard
-          key={rooms?._id}
-          rooms={rooms}/>)
-        }
+    <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
+      
+      {/* Heading */}
+      <div className="mb-10 text-center space-y-3">
+        <h2
+          className="
+            text-3xl
+            sm:text-4xl
+            md:text-5xl
+            font-bold
+            text-gray-800
+          "
+        >
+          Available Study Rooms
+        </h2>
+
+        <p
+          className="
+            mx-auto
+            max-w-2xl
+            text-sm
+            sm:text-base
+            text-gray-600
+          "
+        >
+          Discover peaceful, modern, and fully equipped study spaces
+          designed for focus, productivity, and collaboration.
+        </p>
       </div>
-    </div>
+
+      {/* Responsive Grid */}
+      <div
+        className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          gap-6
+          md:gap-8
+          place-items-center
+        "
+      >
+        {rooms?.map((rooms) => (
+          <AvailableStudyRoomsCard
+            key={rooms?._id}
+            rooms={rooms}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 
