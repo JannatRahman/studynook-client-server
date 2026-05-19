@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Silent Study Pod",
+    "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    "description": "A quiet and distraction-free private study pod designed for deep focus, online classes, and individual productivity sessions.",
+    "floor": "Floor 1",
+    "seatCapacity": "1–2 people",
+    "hourlyRate": "$4/hr",
+    "amenities": ["WiFi", "AC", "Charging Port", "Whiteboard"],
+    "redirectUrl": "/rooms/1"
+  },
+  {
+    "name": "Group Discussion Room",
+    "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+    "description": "Perfect for team discussions, collaborative projects, and group assignments with a modern and comfortable setup.",
+    "floor": "Floor 2",
+    "seatCapacity": "4–6 people",
+    "hourlyRate": "$8/hr",
+    "amenities": ["Projector", "WiFi", "Whiteboard", "AC"],
+    "redirectUrl": "/rooms/2"
+  },
+  {
+    "name": "Creative Brainstorm Hub",
+    "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+    "description": "An inspiring environment built for brainstorming, creative thinking, and productive collaboration sessions.",
+    "floor": "Floor 3",
+    "seatCapacity": "6–8 people",
+    "hourlyRate": "$10/hr",
+    "amenities": ["Smart TV", "WiFi", "Coffee Table", "AC"],
+    "redirectUrl": "/rooms/3"
+  },
+  {
+    "name": "Minimal Focus Room",
+    "image": "https://images.unsplash.com/photo-1497366412874-3415097a27e7",
+    "description": "A clean and minimal study space designed to help students maintain concentration and avoid distractions.",
+    "floor": "Floor 1",
+    "seatCapacity": "2–3 people",
+    "hourlyRate": "$5/hr",
+    "amenities": ["WiFi", "Desk Lamp", "AC", "Charging Port"],
+    "redirectUrl": "/rooms/4"
+  },
+  {
+    "name": "Premium Meeting Suite",
+    "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
+    "description": "Premium room equipped with modern presentation tools and comfortable seating for professional meetings.",
+    "floor": "Floor 4",
+    "seatCapacity": "8–10 people",
+    "hourlyRate": "$15/hr",
+    "amenities": ["Projector", "Conference Table", "WiFi", "AC"],
+    "redirectUrl": "/rooms/5"
+  },
+  {
+    "name": "Night Owl Study Room",
+    "image": "https://images.unsplash.com/photo-1517502884422-41eaead166d4",
+    "description": "Late-night friendly study room with soft lighting and peaceful surroundings for extended study sessions.",
+    "floor": "Floor 2",
+    "seatCapacity": "2–4 people",
+    "hourlyRate": "$6/hr",
+    "amenities": ["24/7 Access", "WiFi", "AC", "Snacks"],
+    "redirectUrl": "/rooms/6"
+  },
+  {
+    "name": "Exam Preparation Hall",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+    "description": "Spacious and organized environment tailored for exam preparation and long-hour focused studying.",
+    "floor": "Floor 5",
+    "seatCapacity": "10–15 people",
+    "hourlyRate": "$12/hr",
+    "amenities": ["WiFi", "Whiteboard", "Library Access", "AC"],
+    "redirectUrl": "/rooms/7"
+  },
+  {
+    "name": "Executive Study Lounge",
+    "image": "https://images.unsplash.com/photo-1497366216548-37526070297c",
+    "description": "Luxury study lounge featuring elegant interiors, premium seating, and a calm professional atmosphere.",
+    "floor": "Floor 3",
+    "seatCapacity": "3–5 people",
+    "hourlyRate": "$14/hr",
+    "amenities": ["Coffee Machine", "WiFi", "AC", "Smart TV"],
+    "redirectUrl": "/rooms/8"
+  },
+  {
+    "name": "Startup Collaboration Room",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    "description": "Designed for startup teams, workshops, and productive brainstorming with flexible seating arrangements.",
+    "floor": "Floor 4",
+    "seatCapacity": "5–7 people",
+    "hourlyRate": "$9/hr",
+    "amenities": ["Projector", "WiFi", "Whiteboard", "Snacks"],
+    "redirectUrl": "/rooms/9"
+  }
+]
