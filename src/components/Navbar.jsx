@@ -17,11 +17,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b transition-all  duration-300 ${
-        scrolled
+      className={`sticky top-0 z-50 w-full border-b transition-all  duration-300 ${scrolled
           ? "bg-white/70 backdrop-blur-md shadow-sm py-2"
           : "bg-[#E8F5BD] py-4"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between ">
 
@@ -115,9 +114,8 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${
-        menuOpen ? "max-h-[700px] py-4" : "max-h-0"
-      }`}>
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-[700px] py-4" : "max-h-0"
+        }`}>
         <div className="px-4 border-t mt-4 pt-4">
 
           <ul className="flex flex-col gap-4">
