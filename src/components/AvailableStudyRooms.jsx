@@ -1,22 +1,12 @@
+import { fetchFeaturedRooms} from "@/lib/rooms/data";
 import AvailableStudyRoomsCard from "./AvailableStudyRoomsCard";
 
-const fetchRooms = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/studyrooms`,
-    {
-      cache: "no-store",
-    }
-  );
 
-  const data = await res.json();
-
-  return data || [];
-};
 
 const AvailableStudyRooms = async () => {
-  const studyrooms = await fetchRooms();
+  const studyrooms = await fetchFeaturedRooms();
 
-  const rooms = [...studyrooms].slice(0, 6);
+  
 
   return (
     <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
@@ -61,10 +51,10 @@ const AvailableStudyRooms = async () => {
           place-items-center
         "
       >
-        {rooms?.map((rooms) => (
+        {studyrooms?.map((rooms) => (
           <AvailableStudyRoomsCard
-            key={rooms?._id}
-            studyrooms={studyrooms}
+            key={studyrooms?._id}
+            studyrooms={rooms}
           />
         ))}
       </div>

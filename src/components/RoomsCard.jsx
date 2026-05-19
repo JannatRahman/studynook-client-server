@@ -3,8 +3,16 @@
 import {  MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
 
 const RoomsCard  = ({ studyrooms }) => {
+  const [search, setSearch] = useState("");
+  
+    const filteredRooms = (studyrooms || [] ).filter((rooms) =>
+      rooms.title.toLowerCase().includes(search.toLowerCase())
+    );
+
   return (
     <div
       className="
@@ -27,6 +35,24 @@ const RoomsCard  = ({ studyrooms }) => {
         hover:shadow-[0_20px_60px_rgba(132,177,121,0.35)]
       "
     >
+      <div>
+            {/*  Search Input */}
+            <input
+              type="text"
+              placeholder="Search course..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full p-3 mb-8 rounded-lg border focus:outline-none focus:ring-2 focus:ring-pink-400"
+            />
+      
+            {/*  Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredRooms.map((room) => (
+                <RoomsCard key={filteredRooms._id} studyrooms={room} />
+              ))}
+            </div>
+          </div>
+      
       
       <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-white/30 blur-3xl"></div>
       <div className="absolute bottom-0 right-0 h-28 w-28 rounded-full bg-[#84B179]/20 blur-3xl"></div>

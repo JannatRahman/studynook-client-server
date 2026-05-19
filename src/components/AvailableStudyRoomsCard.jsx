@@ -4,7 +4,7 @@ import { Bookmark, MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const AvailableStudyRoomsCard = ({ rooms }) => {
+const AvailableStudyRoomsCard = ({ studyrooms }) => {
   return (
     <div
       className="
@@ -51,8 +51,8 @@ const AvailableStudyRoomsCard = ({ rooms }) => {
       {/* Image */}
       <div className="relative z-10 overflow-hidden rounded-3xl">
         <Image
-          src={rooms?.image}
-          alt={rooms?.name}
+          src={studyrooms?.image}
+          alt={studyrooms?.name}
           width={400}
           height={300}
           className="
@@ -74,7 +74,7 @@ const AvailableStudyRoomsCard = ({ rooms }) => {
               text-gray-800
             "
           >
-            {rooms?.name}
+            {studyrooms?.name}
           </h2>
 
           <p
@@ -85,7 +85,7 @@ const AvailableStudyRoomsCard = ({ rooms }) => {
               text-gray-600
             "
           >
-            {rooms?.description}
+            {studyrooms?.description}
           </p>
         </div>
 
@@ -102,7 +102,7 @@ const AvailableStudyRoomsCard = ({ rooms }) => {
               backdrop-blur-md
             "
           >
-            {rooms?.floor}
+            {studyrooms?.floor}
           </span>
 
           <span
@@ -115,13 +115,13 @@ const AvailableStudyRoomsCard = ({ rooms }) => {
               text-white
             "
           >
-            {rooms?.hourlyRate}
+            {studyrooms?.hourlyRate}
           </span>
         </div>
 
         {/* Amenities */}
         <div className="flex flex-wrap justify-center gap-2">
-          {rooms?.amenities?.slice(0, 3).map((item, index) => (
+          {studyrooms?.amenities?.slice(0, 3).map((item, index) => (
             <span
               key={index}
               className="
@@ -138,25 +138,13 @@ const AvailableStudyRoomsCard = ({ rooms }) => {
             </span>
           ))}
 
-          {rooms?.amenities?.length > 3 && (
-            <span
-              className="
-                rounded-full
-                bg-gray-800
-                px-3 py-1
-                text-xs
-                text-white
-              "
-            >
-              +{rooms.amenities.length - 3} more
-            </span>
-          )}
+          
         </div>
 
         {/* Buttons */}
         <div className="flex items-center gap-3 pt-2">
           <Link
-            href={`/rooms/${rooms?._id}`}
+            href={`/rooms/${studyrooms?._id}`}
             className="
               flex-1
               rounded-2xl
