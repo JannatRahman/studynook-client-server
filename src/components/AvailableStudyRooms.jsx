@@ -64,7 +64,7 @@ const AvailableStudyRooms = async () => {
         {rooms?.map((rooms) => (
           <AvailableStudyRoomsCard
             key={rooms?._id}
-            rooms={rooms}
+            studyrooms={studyrooms}
           />
         ))}
       </div>
