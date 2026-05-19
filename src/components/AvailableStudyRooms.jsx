@@ -11,13 +11,13 @@ const AvailableStudyRooms =async () => {
 
   const rooms = [...studyrooms].slice(0, 6);
   return (
-    <div>
+    <div className="">
       <h2>Available Study Rooms</h2>
       <div className="grid grid-cols-3 gap-4">
         {
           rooms?.map((rooms) => <AvailableStudyRoomsCard
           key={rooms?._id}
-          />)
+          rooms={rooms}/>)
         }
       </div>
     </div>

@@ -9,7 +9,7 @@ const StudyRoomSection = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD] py-16 px-4">
 
-      {/* Floating Background Blur */}
+      
       <div className="absolute top-10 left-10 w-40 h-40 bg-white/30 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-10 right-10 w-52 h-52 bg-[#84B179]/20 rounded-full blur-3xl animate-pulse"></div>
 
