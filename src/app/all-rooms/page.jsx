@@ -1,16 +1,24 @@
 import RoomsCard from "@/components/RoomsCard";
-import { fetchRooms } from "@/lib/rooms/data";
+import { SearchBar } from "@/components/SearchBar";
 
+const fetchRooms = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/studyrooms`,
+    {
+      cache: "no-store",
+    }
+  );
 
+  const data = await res.json();
 
-const AllRoomsPage =async () => {
+  return data || [];
+};
+
+const AllRoomsPage = async () => {
   const studyrooms = await fetchRooms();
-  console.log(studyrooms);
-
 
   return (
-   <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
-      
+    <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
       {/* Heading */}
       <div className="mb-10 text-center space-y-3">
         <h2
@@ -22,7 +30,7 @@ const AllRoomsPage =async () => {
             text-gray-800
           "
         >
-         All Rooms
+          All Rooms
         </h2>
 
         <p
@@ -38,8 +46,11 @@ const AllRoomsPage =async () => {
           designed for focus, productivity, and collaboration.
         </p>
       </div>
+      <div>
+         <SearchBar/>
+      </div>
 
-      {/* Responsive Grid */}
+      {/* Grid */}
       <div
         className="
           grid
@@ -48,15 +59,13 @@ const AllRoomsPage =async () => {
           lg:grid-cols-3
           gap-6
           md:gap-8
-          place-items-center
         "
       >
         {studyrooms?.map((rooms) => (
           <RoomsCard
-          key={rooms?._id}
-         studyrooms={rooms}
+            key={rooms?._id}
+            rooms={rooms}
           />
-          
         ))}
       </div>
     </section>
@@ -64,6 +73,3 @@ const AllRoomsPage =async () => {
 };
 
 export default AllRoomsPage;
-
-          
-     

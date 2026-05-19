@@ -1,18 +1,11 @@
 'use client';
 
-import {  MoveUpRight } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { SearchBar } from "./SearchBar";
 
-
-const RoomsCard  = ({ studyrooms }) => {
-  const [search, setSearch] = useState("");
-  
-    const filteredRooms = (studyrooms || [] ).filter((rooms) =>
-      rooms.title.toLowerCase().includes(search.toLowerCase())
-    );
-
+const RoomsCard = ({ rooms }) => {
   return (
     <div
       className="
@@ -35,25 +28,8 @@ const RoomsCard  = ({ studyrooms }) => {
         hover:shadow-[0_20px_60px_rgba(132,177,121,0.35)]
       "
     >
-      <div>
-            {/*  Search Input */}
-            <input
-              type="text"
-              placeholder="Search course..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full p-3 mb-8 rounded-lg border focus:outline-none focus:ring-2 focus:ring-pink-400"
-            />
-      
-            {/*  Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredRooms.map((room) => (
-                <RoomsCard key={filteredRooms._id} studyrooms={room} />
-              ))}
-            </div>
-          </div>
-      
-      
+     
+      {/* Background Blur */}
       <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-white/30 blur-3xl"></div>
       <div className="absolute bottom-0 right-0 h-28 w-28 rounded-full bg-[#84B179]/20 blur-3xl"></div>
 
@@ -77,8 +53,8 @@ const RoomsCard  = ({ studyrooms }) => {
       {/* Image */}
       <div className="relative z-10 overflow-hidden rounded-3xl">
         <Image
-          src={studyrooms?.image}
-          alt={studyrooms?.name}
+          src={rooms?.image || "/placeholder.jpg"}
+          alt={rooms?.name || "Room Image"}
           width={400}
           height={300}
           className="
@@ -100,7 +76,7 @@ const RoomsCard  = ({ studyrooms }) => {
               text-gray-800
             "
           >
-            {studyrooms?.name}
+            {rooms?.name}
           </h2>
 
           <p
@@ -111,7 +87,7 @@ const RoomsCard  = ({ studyrooms }) => {
               text-gray-600
             "
           >
-            {studyrooms?.description}
+            {rooms?.description}
           </p>
         </div>
 
@@ -128,7 +104,7 @@ const RoomsCard  = ({ studyrooms }) => {
               backdrop-blur-md
             "
           >
-            {studyrooms?.floor}
+            {rooms?.floor}
           </span>
 
           <span
@@ -141,13 +117,13 @@ const RoomsCard  = ({ studyrooms }) => {
               text-white
             "
           >
-            {studyrooms?.hourlyRate}
+            ৳{rooms?.hourlyRate}/hr
           </span>
         </div>
 
         {/* Amenities */}
         <div className="flex flex-wrap justify-center gap-2">
-          {studyrooms?.amenities?.slice(0, 4).map((item, index) => (
+          {rooms?.amenities?.slice(0, 4).map((item, index) => (
             <span
               key={index}
               className="
@@ -163,14 +139,12 @@ const RoomsCard  = ({ studyrooms }) => {
               {item}
             </span>
           ))}
-
-         
         </div>
 
-        {/* Buttons */}
+        {/* Button */}
         <div className="flex items-center gap-3 pt-2">
           <Link
-            href={`/rooms/${studyrooms?._id}`}
+            href={`/rooms/${rooms?._id}`}
             className="
               flex-1
               rounded-2xl
@@ -189,8 +163,6 @@ const RoomsCard  = ({ studyrooms }) => {
           >
             View Details
           </Link>
-
-          
         </div>
       </div>
     </div>

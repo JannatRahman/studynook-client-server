@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -49,11 +50,11 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <ul className="hidden lg:flex items-center gap-6 ml-20">
-            <li><Link className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/">Home</Link></li>
-            <li><Link className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/all-rooms">All Rooms</Link></li>
-            <li><Link className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/add-rooms">Add Rooms</Link></li>
-            <li><Link className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/my-listings">My Listings</Link></li>
-            <li><Link className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/my-bookings">My Bookings</Link></li>
+            <li><NavLink className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/">Home</NavLink></li>
+            <li><NavLink className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/all-rooms">All Rooms</NavLink></li>
+            <li><NavLink className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/add-rooms">Add Rooms</NavLink></li>
+            <li><NavLink className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/my-listings">My Listings</NavLink></li>
+            <li><NavLink className="text-lg font-medium hover:text-[#84B179] transition-colors" href="/my-bookings">My Bookings</NavLink></li>
           </ul>
         </div>
 
