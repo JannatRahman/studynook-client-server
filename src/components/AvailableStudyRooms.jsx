@@ -1,7 +1,10 @@
 import { fetchFeaturedRooms} from "@/lib/rooms/data";
 import AvailableStudyRoomsCard from "./AvailableStudyRoomsCard";
 
-
+export const metadata = {
+  title: "All Rooms",
+  
+};
 
 const AvailableStudyRooms = async () => {
   const studyrooms = await fetchFeaturedRooms();

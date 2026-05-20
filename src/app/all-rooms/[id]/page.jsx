@@ -4,12 +4,10 @@ import Link from "next/link";
 import { ArrowLeft, BarChart, BookOpen, Clock, Clock3, MapPin, Users, Users2 } from "lucide-react";
 import { RxCountdownTimer } from "react-icons/rx";
 
-// const fetchSingleRooms =async (id) => {
-
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studyrooms${id}`)
-//   const data =await res.json();
-//   return data || {};
-// }
+export const metadata = {
+  title: "Room Details",
+  
+};
 
 
 const RoomDetailsPage = async ({

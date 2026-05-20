@@ -1,6 +1,7 @@
 'use client'
 
 
+import { signIn } from "@/lib/auth-client";
 import {
   Check,
   EyeClosed,
@@ -22,38 +23,40 @@ import { GrGoogle } from "react-icons/gr";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 export default function LoginPage() {
   const [isShowPassword, setIsShowPassword] = useState(false);
   
 
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
+const handleLogin = async (e) => {
+   
+    e.preventDefault();
+  
+    const formData = new FormData(e.currentTarget)
 
-  //   // const email = e.target.email.value;
-  //   // const password = e.target.password.value;
+    const LoginData = Object.fromEntries(formData.entries())
 
-  //   // try {
+    const { data, error } = await signIn.email({
+      ...LoginData,
+      callbackURL: "/"
      
-  //   //   const result = await authClient.signIn.email({
-  //   //     email,
-  //   //     password,
-  //   //   });
-
-  //     if (result?.data || result) {
-  //       toast.success("Login successful 🎉");
+  
+    })
+    if(error){
+      toast.warning('Registration Failed')
+      return;
+    }
+    {
+        toast.success("Login successful 🎉");
 
        
-  //       setTimeout(() => {
-  //         window.location.href = "/";
-  //       }, 1500);
-  //     } else {
-  //       toast.error("Login failed");
-  //     }
-  //   } catch (error) {
-  //     toast.error("Login failed. Please try again.");
-  //   }
-  // };
-
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1500);
+      }
+    // router.push('/')
+    
+  }
   // const handleGoogleSignin = async () => {
   //   try {
   //     toast.success("Redirecting to Google...");
@@ -78,6 +81,7 @@ export default function LoginPage() {
         </h1>
 
         <Form
+        onSubmit={handleLogin}
           className="flex flex-col gap-5 w-full space-y-3"
          
         >

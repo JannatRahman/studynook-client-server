@@ -3,8 +3,41 @@ import React, { useState } from 'react';
 import {Button, Card, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { Check, EyeClosed } from 'lucide-react';
 import { FaEye } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import { signUp } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
+
 
 const RegisterPage = () => {
+   const router = useRouter()
+  const handleRegister = async (e) => {
+   
+    e.preventDefault();
+    // console.log(e.currentTarget);
+  
+    const formData = new FormData(e.currentTarget)
+  
+    console.log(formData);
+  
+    const registerData = Object.fromEntries(formData.entries())
+    // console.log(registerData);
+  
+    const { data, error } = await signUp.email({
+      ...registerData,
+     
+  
+    })
+    if(error){
+      toast.warning('Registration Failed')
+      return;
+    }
+    toast.success("Registration successful!");
+
+    setTimeout(() => {
+      router.push("/");
+    }, 1500);
+    
+  }
   const [isShowPassword, setIsShowPassword] = useState(false);
   return (
     <div className="min-h-screen  flex items-center justify-center px-4 py-10 bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD]">
@@ -16,7 +49,8 @@ const RegisterPage = () => {
         </h1>
 
       
- <Form className=" flex w-96 flex-col gap-4 space-y-3" >
+ <Form className=" flex w-96 flex-col gap-4 space-y-3"
+ onSubmit={handleRegister} >
       <TextField
         isRequired
         name="name"
