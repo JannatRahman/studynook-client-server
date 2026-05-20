@@ -1,6 +1,6 @@
 'use client';
 
-import { Bookmark, MoveUpRight } from "lucide-react";
+import {  MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -144,7 +144,7 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
         {/* Buttons */}
         <div className="flex items-center gap-3 pt-2">
           <Link
-            href={`/rooms/${studyrooms?._id}`}
+            href={`/all-rooms/${studyrooms?._id}`}
             className="
               flex-1
               rounded-2xl

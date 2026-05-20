@@ -3,7 +3,7 @@
 import { MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SearchBar } from "./SearchBar";
+
 
 const RoomsCard = ({ rooms }) => {
   return (
@@ -51,7 +51,7 @@ const RoomsCard = ({ rooms }) => {
       </div>
 
       {/* Image */}
-      <div className="relative z-10 overflow-hidden rounded-3xl">
+      <div className="  relative z-10 overflow-hidden rounded-3xl">
         <Image
           src={rooms?.image || "/placeholder.jpg"}
           alt={rooms?.name || "Room Image"}
@@ -66,7 +66,7 @@ const RoomsCard = ({ rooms }) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mt-5 space-y-4 text-center">
+      <div className="relative z-10 mt-5 space-y-5 text-center">
         <div className="space-y-2">
           <h2
             className="
@@ -79,16 +79,7 @@ const RoomsCard = ({ rooms }) => {
             {rooms?.name}
           </h2>
 
-          <p
-            className="
-              line-clamp-2
-              text-sm sm:text-base
-              leading-relaxed
-              text-gray-600
-            "
-          >
-            {rooms?.description}
-          </p>
+         
         </div>
 
         {/* Tags */}
@@ -144,7 +135,7 @@ const RoomsCard = ({ rooms }) => {
         {/* Button */}
         <div className="flex items-center gap-3 pt-2">
           <Link
-            href={`/rooms/${rooms?._id}`}
+            href={`/all-rooms/${rooms?._id}`}
             className="
               flex-1
               rounded-2xl

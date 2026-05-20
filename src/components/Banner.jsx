@@ -93,7 +93,7 @@ const Banner = () => {
               </Link>
 
               <Link
-                href="/rooms"
+                href="/all-rooms"
                 className="border-2 border-[#84B179] text-[#84B179] hover:bg-[#84B179] hover:text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300"
               >
                 View Rooms
