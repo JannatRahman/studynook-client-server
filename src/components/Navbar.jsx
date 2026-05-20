@@ -65,17 +65,17 @@ const Navbar = () => {
           <div className="flex items-center gap-2 md:gap-3">
 
             <Link
-              href="/signup"
+              href="/login"
               className="bg-[#84B179] px-3 md:px-4 py-2 rounded-lg font-semibold text-white hover:opacity-90 transition text-sm md:text-base"
             >
               Login
             </Link>
 
             <Link
-              href="/signin"
+              href="/logout"
               className="border border-[#84B179] text-[#84B179] px-3 md:px-4 py-2 rounded-lg font-semibold hover:bg-[#84B179] hover:text-white transition text-sm md:text-base"
             >
-              Logout
+             Logout
             </Link>
           </div>
 
