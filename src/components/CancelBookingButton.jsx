@@ -24,7 +24,7 @@ const CancelBookingButton = () => {
                         </AlertDialog.Header>
                         <AlertDialog.Body>
                             <p className="text-slate-600">
-                                Are you sure you want to cancel this enrollment? This action cannot be undone and you
+                                Are you sure you want to cancel this booking? This action cannot be undone and you
                                 will lose access to the course materials.
                             </p>
                         </AlertDialog.Body>
@@ -33,7 +33,7 @@ const CancelBookingButton = () => {
                                 slot="close"
                                 variant="tertiary"
                             >
-                                Keep Enrollment
+                                Keep Booking
                             </Button>
                             <Button
                                 slot="close"
