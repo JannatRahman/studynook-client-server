@@ -11,6 +11,7 @@ import {
 import { RxCountdownTimer } from "react-icons/rx";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import BookingButton from "@/components/BookingButton";
 
 export const metadata = {
   title: "Room Details",
@@ -54,7 +55,7 @@ const RoomDetailsPage = async ({ params }) => {
     },
     {
       icon: Users2,
-      label: room?.capacity || "0 Students",
+      label: `${room?.bookingCount || 0} Student`,
     },
   ];
 
@@ -181,18 +182,7 @@ const RoomDetailsPage = async ({ params }) => {
             </div>
 
             {/* BUTTON */}
-            <button
-              className="
-                mt-10 w-fit rounded-2xl
-                bg-[#84B179]
-                px-8 py-4
-                font-semibold text-white
-                shadow-lg shadow-[#84B179]/30
-                transition hover:scale-105
-              "
-            >
-              Book Now
-            </button>
+            <BookingButton room={room}/>
 
           </div>
         </div>

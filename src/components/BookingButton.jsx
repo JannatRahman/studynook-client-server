@@ -1,0 +1,59 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@heroui/react";
+import { useSession, authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+export default function BookingButton({ room }) {
+    const { data: session } = useSession()
+    const router = useRouter();
+
+
+    const handleBooking = async () => {
+        const { data: jwtData } = await authClient.token();
+        const token = jwtData?.token;
+        if (!token) {
+            toast.error("authentication falid. Enrollment not done.")
+            return;
+        }
+        const updatedData = {
+            userId: session?.user?.id,
+            studentName: session?.user?.name,
+            studentEmail: session?.user?.email,
+            RoomTitle: room?.name,
+            
+        }
+
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/booking/${room?._id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedData)
+        })
+
+        const data = await res.json();
+        if (!data) {
+            toast.error("Something went wrong")
+            return
+        }
+        router.push("/my-bookings")
+
+
+
+
+    }
+    return (
+        <Button
+            
+            className="bg-[#84B179] w-full font-bold shadow-lg mt-4"
+            onPress={handleBooking}
+        >
+            Book Now
+        </Button>
+    );
+}
