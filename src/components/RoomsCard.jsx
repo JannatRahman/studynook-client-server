@@ -8,26 +8,7 @@ import Link from "next/link";
 const RoomsCard = ({ rooms }) => {
   return (
     <div
-      className="
-        group
-        relative
-        w-full
-        max-w-[340px]
-        mx-auto
-        overflow-hidden
-        rounded-[32px]
-        border border-white/40
-        bg-gradient-to-b from-[#C7EABB] via-[#d9f0cb] to-[#E8F5BD]
-        p-4 sm:p-5 md:p-6
-        shadow-[0_10px_40px_rgba(132,177,121,0.25)]
-        backdrop-blur-xl
-        transition-all
-        duration-500
-        hover:-translate-y-3
-        hover:rotate-[1deg]
-        hover:shadow-[0_20px_60px_rgba(132,177,121,0.35)]
-      "
-    >
+      className=" group relative w-full max-w-[340px] mx-auto overflow-hidden rounded-[32px] border border-white/40 bg-gradient-to-b from-[#C7EABB] via-[#d9f0cb] to-[#E8F5BD] p-4 sm:p-5 md:p-6 shadow-[0_10px_40px_rgba(132,177,121,0.25)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:rotate-[1deg] hover:shadow-[0_20px_60px_rgba(132,177,121,0.35)]">
      
       {/* Background Blur */}
       <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-white/30 blur-3xl"></div>

@@ -1,17 +1,30 @@
-import {Label, SearchField} from "@heroui/react";
+'use client';
 
-export function SearchBar() {
+import { SearchField } from "@heroui/react";
+
+export function SearchBar({ search, setSearch }) {
   return (
-    <div >
+    <div>
 
-    <SearchField name="search">
-      
-      <SearchField.Group className='bg-[#E8F5BD] m-5 p-5'>
-        <SearchField.SearchIcon />
-        <SearchField.Input className="   w-[280px]" placeholder="Search..." />
-        <SearchField.ClearButton />
-      </SearchField.Group>
-    </SearchField>
+      <SearchField name="search">
+
+        <SearchField.Group className="bg-[#E8F5BD] m-5 p-5 rounded-2xl">
+
+          <SearchField.SearchIcon />
+
+          <SearchField.Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-[280px] bg-transparent outline-none"
+            placeholder="Search rooms..."
+          />
+
+          <SearchField.ClearButton />
+
+        </SearchField.Group>
+
+      </SearchField>
+
     </div>
   );
 }

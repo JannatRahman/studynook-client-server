@@ -1,19 +1,19 @@
-import { fetchFeaturedRooms} from "@/lib/rooms/data";
+import { fetchFeaturedRooms } from "@/lib/rooms/data";
 import AvailableStudyRoomsCard from "./AvailableStudyRoomsCard";
 
 export const metadata = {
   title: "All Rooms",
-  
+
 };
 
 const AvailableStudyRooms = async () => {
   const studyrooms = await fetchFeaturedRooms();
 
-  
+
 
   return (
     <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
-      
+
       {/* Heading */}
       <div className="mb-10 text-center space-y-3">
         <h2
@@ -44,14 +44,7 @@ const AvailableStudyRooms = async () => {
 
       {/* Responsive Grid */}
       <div
-        className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-3
-          gap-6
-          md:gap-8
-          place-items-center
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 place-items-center
         "
       >
         {studyrooms?.map((rooms) => (

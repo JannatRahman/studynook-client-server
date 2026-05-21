@@ -1,7 +1,7 @@
 'use client'
 
 
-import { signIn } from "@/lib/auth-client";
+import {  signIn } from "@/lib/auth-client";
 import {
   Check,
   EyeClosed,
@@ -25,6 +25,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 export default function LoginPage() {
+ 
+
   const [isShowPassword, setIsShowPassword] = useState(false);
   
 
@@ -39,9 +41,9 @@ const handleLogin = async (e) => {
     const { data, error } = await signIn.email({
       ...LoginData,
       callbackURL: "/"
-     
-  
     })
+       
+
     if(error){
       toast.warning('Registration Failed')
       return;
@@ -158,12 +160,10 @@ const handleLogin = async (e) => {
 
           {/* Buttons */}
           <div className="flex items-center gap-2">
-                  <Button className="bg-[#84B179] px-6 md:px-4 py-5 rounded-lg font-bold text-white hover:opacity-90 transition text-sm md:text-base" type="submit">
-            Submit
+                  <Button className="bg-[#84B179] px-6 md:px-4 py-5 rounded-lg font-bold w-full text-white hover:opacity-90 transition text-sm md:text-base" type="submit">
+            Login
                   </Button>
-                  <Button className="border border-[#84B179] text-[#84B179] px-6 md:px-4 py-5 rounded-lg font-bold hover:bg-[#84B179] hover:text-white transition text-sm md:text-base" type="reset" variant="secondary">
-                    Reset
-                  </Button>
+                  
                 </div>
         </Form>
 
