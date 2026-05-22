@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,6 +12,8 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import BookingButton from "@/components/BookingButton";
+import { Button } from "@heroui/react";
+import { EditModalForm, EditMOdalForm } from "@/components/EditModal";
 
 export const metadata = {
   title: "Room Details",
@@ -48,7 +49,6 @@ const RoomDetailsPage = async ({ params }) => {
   // fetch room
   const room = await fetchSingleRooms(id, token);
 
- 
   const featuredItems = [
     {
       icon: RxCountdownTimer,
@@ -63,19 +63,43 @@ const RoomDetailsPage = async ({ params }) => {
   return (
     <section className="min-h-screen bg-[#f6faef] px-4 py-10 sm:px-6 lg:px-12">
 
-      {/* Back Button */}
-      <Link
-        href="/all-rooms"
-        className="
-          mb-8 inline-flex items-center gap-2
-          rounded-full bg-white px-5 py-2.5
-          text-sm font-medium text-gray-700
-          shadow-md transition hover:scale-105
-        "
-      >
-        <ArrowLeft size={18} />
-        Back
-      </Link>
+      {/* Top */}
+      <div>
+
+        {/* Back */}
+        <Link
+          href="/all-rooms"
+          className="
+            mb-8 inline-flex items-center gap-2
+            rounded-full bg-white px-5 py-2.5
+            text-sm font-medium text-gray-700
+            shadow-md transition hover:scale-105
+          "
+        >
+          <ArrowLeft size={18} />
+          Back
+        </Link>
+
+        {/* Actions */}
+        <div className="flex justify-end gap-5 pb-5">
+          <EditModalForm room={room}/>
+
+          <Button
+            variant="outline"
+            className="
+              border border-[#84B179]
+              text-red-600
+              font-semibold
+              rounded-none
+              hover:bg-danger
+              hover:text-white
+            "
+          >
+            Delete
+          </Button>
+        </div>
+
+      </div>
 
       {/* Main Card */}
       <div
@@ -108,10 +132,12 @@ const RoomDetailsPage = async ({ params }) => {
           {/* CONTENT */}
           <div className="flex flex-col justify-center">
 
+            {/* Title */}
             <h1 className="text-4xl font-extrabold text-gray-800">
               {room?.name}
             </h1>
 
+            {/* Description */}
             <p className="mt-5 text-lg leading-relaxed text-gray-700">
               {room?.description}
             </p>
@@ -119,7 +145,9 @@ const RoomDetailsPage = async ({ params }) => {
             {/* INFO BOXES */}
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
 
+              {/* Floor */}
               <div className="rounded-3xl bg-white/60 p-4">
+
                 <MapPin className="mb-2 text-[#84B179]" />
 
                 <p className="text-sm text-gray-500">
@@ -129,9 +157,12 @@ const RoomDetailsPage = async ({ params }) => {
                 <h3 className="font-bold text-gray-800">
                   {room?.floor}
                 </h3>
+
               </div>
 
+              {/* Capacity */}
               <div className="rounded-3xl bg-white/60 p-4">
+
                 <Users className="mb-2 text-[#84B179]" />
 
                 <p className="text-sm text-gray-500">
@@ -141,9 +172,12 @@ const RoomDetailsPage = async ({ params }) => {
                 <h3 className="font-bold text-gray-800">
                   {room?.capacity}
                 </h3>
+
               </div>
 
+              {/* Hourly Rate */}
               <div className="rounded-3xl bg-white/60 p-4">
+
                 <Clock3 className="mb-2 text-[#84B179]" />
 
                 <p className="text-sm text-gray-500">
@@ -151,8 +185,9 @@ const RoomDetailsPage = async ({ params }) => {
                 </p>
 
                 <h3 className="font-bold text-gray-800">
-                  {room?.hourlyRate}
+                  ${room?.hourlyRate}
                 </h3>
+
               </div>
 
             </div>
@@ -164,26 +199,57 @@ const RoomDetailsPage = async ({ params }) => {
                 Amenities
               </h2>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                {room?.amenities?.map((item, index) => (
-                  <span
-                    key={index}
-                    className="
-                      rounded-full bg-white/60
-                      px-4 py-2 text-sm
-                      text-gray-700
-                    "
-                  >
-                    {item}
-                  </span>
-                ))}
+                {room?.amenities?.length > 0 ? (
+                  room.amenities.map((item, index) => (
+                    <div
+                      key={index}
+                      className="
+                        flex items-center gap-3
+                        rounded-2xl
+                        border border-white/40
+                        bg-white/70
+                        px-4 py-3
+                        shadow-sm
+                        transition-all duration-300
+                        hover:scale-[1.02]
+                        hover:shadow-md
+                      "
+                    >
+
+                      {/* Checkbox Style */}
+                      <div
+                        className="
+                          flex h-5 w-5 items-center justify-center
+                          rounded-md bg-[#84B179]
+                          text-white text-xs font-bold
+                        "
+                      >
+                        ✓
+                      </div>
+
+                      {/* Amenity */}
+                      <span className="text-sm font-medium text-gray-700">
+                        {item}
+                      </span>
+
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500">
+                    No amenities available
+                  </p>
+                )}
 
               </div>
+
             </div>
 
-            {/* BUTTON */}
-            <BookingButton room={room}/>
+            {/* BOOK BUTTON */}
+            <div className="mt-8">
+              <BookingButton room={room} />
+            </div>
 
           </div>
         </div>
@@ -203,8 +269,11 @@ const RoomDetailsPage = async ({ params }) => {
                 hover:bg-white hover:shadow-lg
               "
             >
+
               <item.icon className="h-5 w-5 text-blue-600" />
+
               <span>{item.label}</span>
+
             </div>
           ))}
 

@@ -143,6 +143,7 @@ const Navbar = () => {
                     </p> */}
                   </div>
                   <Image
+                  referrerPolicy="no-referrer"
                     width={40}
                     height={40}
                     src={

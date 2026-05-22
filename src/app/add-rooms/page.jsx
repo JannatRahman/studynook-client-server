@@ -5,33 +5,62 @@ import {
   Input,
   Label,
   TextField,
-  Select,
-  ListBox,
   TextArea,
   Button,
   Card
 } from "@heroui/react";
 
 import React from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const AddRoomsPage = () => {
+
+  const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const booking = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studyrooms`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(booking)
-    });
+    const booking = {
+      Name: formData.get("name"),
+      description: formData.get("description"),
+      floor: Number(formData.get("floor")),
+      capacity: Number(formData.get("capacity")),
+      hourlyRate: Number(formData.get("hourlyRate")),
+      image: formData.get("image"),
 
-    const data = await res.json();
-    console.log(data);
+      // multiple selected amenities
+      amenities: formData.getAll("amenities"),
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/studyrooms`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(booking),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success("Room has been added successfully");
+
+        // redirect
+        router.push("/my-listings");
+      } else {
+        toast.error(data?.message || "Something went wrong");
+      }
+    } catch (error) {
+      toast.error("Failed to add room");
+      console.log(error);
+    }
   };
 
   return (
@@ -51,7 +80,10 @@ const AddRoomsPage = () => {
             <div className="md:col-span-2">
               <TextField name="destinationName" isRequired>
                 <Label>Room Name</Label>
-                <Input className="rounded-xl w-full" />
+                <Input
+                  className="bg-[#C7EABB] rounded-xl w-full"
+                  placeholder="Enter room name"
+                />
                 <FieldError />
               </TextField>
             </div>
@@ -62,55 +94,74 @@ const AddRoomsPage = () => {
                 <Label>Description</Label>
                 <TextArea
                   placeholder="Describe the room details..."
-                  className="rounded-xl w-full min-h-[120px]"
+                  className="bg-[#C7EABB] rounded-xl w-full min-h-[120px]"
                 />
                 <FieldError />
               </TextField>
             </div>
 
-            {/* Amenities / Category */}
-            <div className="w-full">
-              <Select
-                name="category"
-                isRequired
-                className="w-full"
-                placeholder="Select category"
-              >
-                <Label>Amenities</Label>
+            {/* Amenities */}
+            <div className="md:col-span-2">
+              <label className="block mb-3 font-semibold text-sm text-gray-700">
+                Amenities
+              </label>
 
-                <Select.Trigger className="rounded-xl w-full">
-                  <Select.Value />
-                  <Select.Indicator />
-                </Select.Trigger>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
 
-                <Select.Popover>
-                  <ListBox>
-                    {["Beach", "Mountain", "City", "Adventure", "Cultural", "Luxury"].map((item) => (
-                      <ListBox.Item key={item} id={item} textValue={item}>
-                        {item}
-                        <ListBox.ItemIndicator />
-                      </ListBox.Item>
-                    ))}
-                  </ListBox>
-                </Select.Popover>
-              </Select>
+                {[
+                  "Projector",
+                  "Conference Table",
+                  "WiFi",
+                  "AC",
+                  "Whiteboard",
+                  "Snacks",
+                  "Library Access",
+                  "Smart TV",
+                  "Desk Lamp",
+                ].map((item) => (
+                  <label
+                    key={item}
+                    className="flex items-center gap-3 bg-[#C7EABB] p-3 rounded-xl cursor-pointer hover:scale-[1.02] transition"
+                  >
+                    <input
+                      type="checkbox"
+                      name="amenities"
+                      value={item}
+                      className="w-4 h-4 accent-[#84B179]"
+                    />
+
+                    <span className="text-sm font-medium">
+                      {item}
+                    </span>
+                  </label>
+                ))}
+
+              </div>
             </div>
 
             {/* Floor */}
             <TextField name="floor" type="number" isRequired>
               <Label>Floor</Label>
-              <Input type="number" className="rounded-xl w-full" />
+              <Input
+                type="number"
+                placeholder="e.g. 3"
+                className="bg-[#C7EABB] rounded-xl w-full"
+              />
               <FieldError />
             </TextField>
 
             {/* Capacity */}
             <TextField name="capacity" type="number" isRequired>
               <Label>Capacity</Label>
-              <Input type="number" className="rounded-xl w-full" />
+              <Input
+                type="number"
+                placeholder="e.g. 4"
+                className="bg-[#C7EABB] rounded-xl w-full"
+              />
               <FieldError />
             </TextField>
 
-            {/* Hourly Rate FIXED */}
+            {/* Hourly Rate */}
             <TextField name="hourlyRate" type="number" isRequired>
               <Label>Hourly Rate (per hour)</Label>
               <Input
@@ -118,7 +169,7 @@ const AddRoomsPage = () => {
                 min="0"
                 step="1"
                 placeholder="e.g. 50"
-                className="rounded-xl w-full"
+                className="bg-[#C7EABB] rounded-xl w-full"
               />
               <FieldError />
             </TextField>
@@ -130,7 +181,7 @@ const AddRoomsPage = () => {
                 <Input
                   type="url"
                   placeholder="https://example.com/image.jpg"
-                  className="rounded-xl w-full"
+                  className="bg-[#C7EABB] rounded-xl w-full"
                 />
                 <FieldError />
               </TextField>
@@ -141,7 +192,7 @@ const AddRoomsPage = () => {
           {/* BUTTON */}
           <Button
             type="submit"
-            className="w-full rounded-xl bg-[#84B179] text-white font-semibold text-base sm:text-lg py-2 sm:py-3"
+            className="w-full rounded-xl bg-[#84B179] text-white font-semibold text-base sm:text-lg py-3 hover:opacity-90 transition"
           >
             Add Room
           </Button>

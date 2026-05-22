@@ -1,37 +1,22 @@
-'use client';
-
-import { useEffect, useState } from "react";
 import RoomsCard from "@/components/RoomsCard";
 import { SearchBar } from "@/components/SearchBar";
+import { fetchRooms } from "@/lib/rooms/data";
 
-const RoomsContainer = () => {
-  const [rooms, setRooms] = useState([]);
-  const [search, setSearch] = useState('');
+const RoomsContainer = async ({ searchParams }) => {
 
-  const fetchRooms = async (searchText = '') => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/studyrooms?search=${searchText}`,
-      {
-        cache: 'no-store',
-      }
-    );
+  // ✅ get search term
+  const searchTerm = searchParams?.search || '';
 
-    const data = await res.json();
-
-    setRooms(data);
-  };
-
-  useEffect(() => {
-    fetchRooms(search);
-  }, [search]);
+  // ✅ fetch rooms
+  const rooms = await fetchRooms(searchTerm);
 
   return (
-    <>
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-      />
+    <div>
 
+      {/* Search Bar */}
+      <SearchBar search={searchTerm} />
+
+      {/* Rooms Grid */}
       <div
         className="
           grid
@@ -43,14 +28,27 @@ const RoomsContainer = () => {
           mt-8
         "
       >
-        {rooms?.map((room) => (
-          <RoomsCard
-            key={room?._id}
-            rooms={room}
-          />
-        ))}
+
+        {rooms?.length > 0 ? (
+
+          rooms.map((room) => (
+            <RoomsCard
+              key={room?._id}
+              rooms={room}
+            />
+          ))
+
+        ) : (
+
+          <p className="text-center col-span-full text-slate-500">
+            No rooms found
+          </p>
+
+        )}
+
       </div>
-    </>
+
+    </div>
   );
 };
 

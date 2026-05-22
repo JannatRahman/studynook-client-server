@@ -1,7 +1,7 @@
 'use client'
 
 
-import {  signIn } from "@/lib/auth-client";
+import {  authClient, signIn } from "@/lib/auth-client";
 import {
   Check,
   EyeClosed,
@@ -59,19 +59,19 @@ const handleLogin = async (e) => {
     // router.push('/')
     
   }
-  // const handleGoogleSignin = async () => {
-  //   try {
-  //     toast.success("Redirecting to Google...");
+  const handleGoogleSignin = async () => {
+    try {
+      toast.success("Redirecting to Google...");
 
-  //     setTimeout(async () => {
-  //       await authClient.signIn.social({
-  //         provider: "google",
-  //       });
-  //     }, 1000);
-  //   } catch (error) {
-  //     toast.error("Google sign in failed.");
-  //   }
-  // };
+      setTimeout(async () => {
+        await authClient.signIn.social({
+          provider: "google",
+        });
+      }, 1000);
+    } catch (error) {
+      toast.error("Google sign in failed.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-pink-100 flex items-center justify-center px-4 py-10 bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD]">
@@ -174,7 +174,7 @@ const handleLogin = async (e) => {
 
         {/* Google */}
         <Button
-          
+          onClick={handleGoogleSignin}
           variant="outline"
           className="w-full flex items-center justify-center text-lg gap-2 hover:bg-[#84B179] hover:text-white "
         >
