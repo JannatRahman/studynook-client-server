@@ -4,14 +4,15 @@ import Link from 'next/link';
 
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
+import DeleteBookingButton from '@/components/DeleteBookingButton';
 
-import CancelBookingButton from '@/components/CancelBookingButton';
+
 
 export default async function MyBookingsPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
+console.log(session?.user);
   if (!session?.user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] px-4">
@@ -130,13 +131,13 @@ export default async function MyBookingsPage() {
                     </Chip>
 
                     <div className="text-slate-700 font-semibold">
-                      💰 ${item?.roomId?.hourlyRate}/hr
+                       ${item?.roomId?.hourlyRate}/hr
                     </div>
                   </div>
 
                   {/* Action */}
                   <div className="flex justify-end">
-                    <CancelBookingButton bookingId={item?._id} />
+                    <DeleteBookingButton  room={booking}/>
                   </div>
 
                 </div>

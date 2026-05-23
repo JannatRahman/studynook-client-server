@@ -11,8 +11,8 @@ const MyListingCard = ({ room }) => {
       {/* IMAGE */}
       <div className="relative w-full h-48">
         <Image
-          src={room.imageUrl}
-          alt={room.destinationName}
+          src={room?.image}
+          alt={room?.name}
           fill
           className="object-cover"
         />
@@ -25,28 +25,28 @@ const MyListingCard = ({ room }) => {
 
         {/* Description */}
         <p className="text-sm text-gray-500 line-clamp-2">
-          {room.description}
+          {room?.description}
         </p>
 
         {/* Chips */}
         <div className="flex flex-wrap gap-2">
           <Chip size="sm" color="primary">
-            Floor: {room.floor}
+            Floor: {room?.floor}
           </Chip>
 
           <Chip size="sm" color="secondary">
-            Capacity: {room.capacity}
+            Capacity: {room?.capacity}
           </Chip>
 
           <Chip size="sm" color="success">
-            ${room.hourlyRate}/hr
+            ${room?.hourlyRate}/hr
           </Chip>
         </div>
 
         {/* Amenities */}
         <div className="flex flex-wrap gap-2 pt-1">
-          {Array.isArray(room.category)
-            ? room.category.map((item, i) => (
+          {Array.isArray(room?.category)
+            ? room?.category.map((item, i) => (
                 <span
                   key={i}
                   className="text-xs bg-gray-100 px-2 py-1 rounded-full"
@@ -56,7 +56,7 @@ const MyListingCard = ({ room }) => {
               ))
             : (
               <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">
-                {room.category}
+                {room?.category}
               </span>
             )}
         </div>

@@ -11,9 +11,10 @@ import {
 import { RxCountdownTimer } from "react-icons/rx";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import BookingButton from "@/components/BookingButton";
-import { Button } from "@heroui/react";
-import { EditModalForm, EditMOdalForm } from "@/components/EditModal";
+
+import { EditModalForm, } from "@/components/EditModal";
+import DeleteBookingButton from "@/components/DeleteBookingButton";
+import { OpenModal } from "@/components/OpenModal";
 
 export const metadata = {
   title: "Room Details",
@@ -37,6 +38,7 @@ const fetchSingleRooms = async (id, token) => {
   const data = await res.json();
   return data;
 };
+ 
 
 const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -48,6 +50,7 @@ const RoomDetailsPage = async ({ params }) => {
 
   // fetch room
   const room = await fetchSingleRooms(id, token);
+  console.log(room, 'room');
 
   const featuredItems = [
     {
@@ -81,22 +84,10 @@ const RoomDetailsPage = async ({ params }) => {
         </Link>
 
         {/* Actions */}
-        <div className="flex justify-end gap-5 pb-5">
-          <EditModalForm room={room}/>
+        <div className="flex justify-end gap-5 pb-5 items-center">
+          <EditModalForm room={room} />
+          <DeleteBookingButton room={room} />
 
-          <Button
-            variant="outline"
-            className="
-              border border-[#84B179]
-              text-red-600
-              font-semibold
-              rounded-none
-              hover:bg-danger
-              hover:text-white
-            "
-          >
-            Delete
-          </Button>
         </div>
 
       </div>
@@ -201,11 +192,11 @@ const RoomDetailsPage = async ({ params }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                {room?.amenities?.length > 0 ? (
-                  room.amenities.map((item, index) => (
-                    <div
-                      key={index}
-                      className="
+                {room?.amenities ? (
+
+                  <div
+                  
+                    className="
                         flex items-center gap-3
                         rounded-2xl
                         border border-white/40
@@ -216,26 +207,27 @@ const RoomDetailsPage = async ({ params }) => {
                         hover:scale-[1.02]
                         hover:shadow-md
                       "
-                    >
+                  >
 
-                      {/* Checkbox Style */}
-                      <div
-                        className="
+                    {/* Checkbox Style */}
+                    <div
+                      className="
                           flex h-5 w-5 items-center justify-center
                           rounded-md bg-[#84B179]
                           text-white text-xs font-bold
                         "
-                      >
-                        ✓
-                      </div>
-
-                      {/* Amenity */}
-                      <span className="text-sm font-medium text-gray-700">
-                        {item}
-                      </span>
-
+                    >
+                      ✓
                     </div>
-                  ))
+
+                    {/* Amenity */}
+                    <span className="text-sm font-medium text-gray-700">
+                      {
+                       room?.amenities}
+                    </span>
+
+                  </div>
+
                 ) : (
                   <p className="text-gray-500">
                     No amenities available
@@ -248,7 +240,7 @@ const RoomDetailsPage = async ({ params }) => {
 
             {/* BOOK BUTTON */}
             <div className="mt-8">
-              <BookingButton room={room} />
+              <OpenModal room={room} />
             </div>
 
           </div>

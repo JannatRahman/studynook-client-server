@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import NavLink from "./NavLink";
 
 import { useRouter } from "next/navigation";
-import { signOut, useSession } from "@/lib/auth-client";
+import { authClient, signOut, useSession } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { toast } from "react-toastify";
 
@@ -17,6 +17,8 @@ const Navbar = () => {
 
   const router = useRouter();
   const { data: session, isPending } = useSession();
+
+  
 
 
   useEffect(() => {

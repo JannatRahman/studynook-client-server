@@ -1,6 +1,6 @@
 import RoomsContainer from "@/components/RoomsContainer";
 
-const AllRoomsPage = () => {
+const AllRoomsPage = ({searchParams}) => {
   return (
     <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
 
@@ -34,7 +34,7 @@ const AllRoomsPage = () => {
 
       </div>
 
-      <RoomsContainer />
+      <RoomsContainer searchParams={searchParams}/>
 
     </section>
   );

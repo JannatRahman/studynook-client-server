@@ -1,14 +1,17 @@
+
 import RoomsCard from "@/components/RoomsCard";
 import { SearchBar } from "@/components/SearchBar";
 import { fetchRooms } from "@/lib/rooms/data";
 
 const RoomsContainer = async ({ searchParams }) => {
 
-  // ✅ get search term
-  const searchTerm = searchParams?.search || '';
+  
+  const searchTerm =await searchParams;
+  console.log(searchTerm);
 
-  // ✅ fetch rooms
-  const rooms = await fetchRooms(searchTerm);
+
+  const rooms = await fetchRooms(searchTerm?.searchTerm);
+  console.log(rooms);
 
   return (
     <div>
