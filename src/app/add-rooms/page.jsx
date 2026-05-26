@@ -16,12 +16,15 @@ const AddRoomsPage = () => {
     roomData.userId = session.user.id;
     console.log(roomData);
 
+     const {data:tokenData} =await authClient.token();
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/studyrooms`,
         {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`
           },
           body: JSON.stringify(roomData)
         });

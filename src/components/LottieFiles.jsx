@@ -5,8 +5,23 @@ import animationData from "../../public/animations/hero.json";
 
 export default function LottieFiles() {
   return (
-    <div style={{ width: 600, height: 600 }}>
-      <Lottie animationData={animationData} loop={true} />
+    <div
+      className="
+        w-full
+        max-w-[220px]
+        sm:max-w-[320px]
+        md:max-w-[420px]
+        lg:max-w-[520px]
+        xl:max-w-[800px]
+        aspect-square
+        mx-auto
+      "
+    >
+      <Lottie
+        animationData={animationData}
+        loop={true}
+        className="w-full h-full"
+      />
     </div>
   );
 }

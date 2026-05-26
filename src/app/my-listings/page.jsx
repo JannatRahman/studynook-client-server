@@ -13,13 +13,14 @@ const MyListings = async () => {
   });
 console.log(session);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/studyrooms/${session.user.id}`,
-    {
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
+    `${process.env.NEXT_PUBLIC_API_URL}/mystudyrooms/${session.user.id}`,
+     {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           cache: 'no-store',
         }
+   
   );
   const listings = await res.json();
   console.log(listings);

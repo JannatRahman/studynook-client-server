@@ -12,7 +12,7 @@ import { RxCountdownTimer } from "react-icons/rx";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
-import { EditModalForm, } from "@/components/EditModal";
+import { EditModalForm } from "@/components/EditModal";
 import DeleteBookingButton from "@/components/DeleteBookingButton";
 import { OpenModal } from "@/components/OpenModal";
 
@@ -38,7 +38,6 @@ const fetchSingleRooms = async (id, token) => {
   const data = await res.json();
   return data;
 };
- 
 
 const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -50,7 +49,6 @@ const RoomDetailsPage = async ({ params }) => {
 
   // fetch room
   const room = await fetchSingleRooms(id, token);
-  console.log(room, 'room');
 
   const featuredItems = [
     {
@@ -59,218 +57,227 @@ const RoomDetailsPage = async ({ params }) => {
     },
     {
       icon: Users2,
-      label: `${room?.bookingCount || 0} Student`,
+      label: `${room?.bookingCount || 0} Students`,
     },
   ];
 
   return (
-    <section className="min-h-screen bg-[#f6faef] px-4 py-10 sm:px-6 lg:px-12">
+    <section className="min-h-screen bg-[#f6faef] px-3 py-6 sm:px-6 sm:py-10 lg:px-12">
 
-      {/* Top */}
-      <div>
+      {/* TOP */}
+      <div className="mx-auto max-w-7xl">
 
-        {/* Back */}
-        <Link
-          href="/all-rooms"
+        {/* BACK + ACTIONS */}
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+          {/* Back */}
+          <Link
+            href="/all-rooms"
+            className="
+              inline-flex w-fit items-center gap-2
+              rounded-full bg-white px-4 py-2.5
+              text-sm font-medium text-gray-700
+              shadow-md transition hover:scale-105
+            "
+          >
+            <ArrowLeft size={18} />
+            Back
+          </Link>
+
+          {/* Actions */}
+          <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+            <EditModalForm room={room} />
+            <DeleteBookingButton room={room} />
+          </div>
+
+        </div>
+
+        {/* MAIN CARD */}
+        <div
           className="
-            mb-8 inline-flex items-center gap-2
-            rounded-full bg-white px-5 py-2.5
-            text-sm font-medium text-gray-700
-            shadow-md transition hover:scale-105
+            relative overflow-hidden
+            rounded-[24px] sm:rounded-[32px] lg:rounded-[40px]
+            border border-white/40
+            bg-gradient-to-br
+            from-[#C7EABB]
+            via-[#d9f0cb]
+            to-[#E8F5BD]
+            p-4 sm:p-6 lg:p-10
+            shadow-[0_20px_80px_rgba(132,177,121,0.25)]
           "
         >
-          <ArrowLeft size={18} />
-          Back
-        </Link>
 
-        {/* Actions */}
-        <div className="flex justify-end gap-5 pb-5 items-center">
-          <EditModalForm room={room} />
-          <DeleteBookingButton room={room} />
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
 
-        </div>
+            {/* IMAGE */}
+            <div className="overflow-hidden rounded-[24px] sm:rounded-[32px]">
 
-      </div>
-
-      {/* Main Card */}
-      <div
-        className="
-          relative mx-auto max-w-6xl overflow-hidden
-          rounded-[40px]
-          border border-white/40
-          bg-gradient-to-br
-          from-[#C7EABB]
-          via-[#d9f0cb]
-          to-[#E8F5BD]
-          p-6 lg:p-10
-          shadow-[0_20px_80px_rgba(132,177,121,0.25)]
-        "
-      >
-
-        <div className="grid gap-10 lg:grid-cols-2">
-
-          {/* IMAGE */}
-          <div className="overflow-hidden rounded-[32px]">
-            <Image
-              src={room?.image}
-              alt={room?.name || "Room Image"}
-              width={800}
-              height={600}
-              className="h-full w-full object-cover"
-            />
-          </div>
-
-          {/* CONTENT */}
-          <div className="flex flex-col justify-center">
-
-            {/* Title */}
-            <h1 className="text-4xl font-extrabold text-gray-800">
-              {room?.name}
-            </h1>
-
-            {/* Description */}
-            <p className="mt-5 text-lg leading-relaxed text-gray-700">
-              {room?.description}
-            </p>
-
-            {/* INFO BOXES */}
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-
-              {/* Floor */}
-              <div className="rounded-3xl bg-white/60 p-4">
-
-                <MapPin className="mb-2 text-[#84B179]" />
-
-                <p className="text-sm text-gray-500">
-                  Floor
-                </p>
-
-                <h3 className="font-bold text-gray-800">
-                  {room?.floor}
-                </h3>
-
-              </div>
-
-              {/* Capacity */}
-              <div className="rounded-3xl bg-white/60 p-4">
-
-                <Users className="mb-2 text-[#84B179]" />
-
-                <p className="text-sm text-gray-500">
-                  Capacity
-                </p>
-
-                <h3 className="font-bold text-gray-800">
-                  {room?.capacity}
-                </h3>
-
-              </div>
-
-              {/* Hourly Rate */}
-              <div className="rounded-3xl bg-white/60 p-4">
-
-                <Clock3 className="mb-2 text-[#84B179]" />
-
-                <p className="text-sm text-gray-500">
-                  Hourly Rate
-                </p>
-
-                <h3 className="font-bold text-gray-800">
-                  ${room?.hourlyRate}
-                </h3>
-
-              </div>
+              <Image
+                src={
+                  room?.image ||
+                  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200"
+                }
+                alt={room?.name || "Room Image"}
+                width={800}
+                height={600}
+                className="
+                  h-[250px] sm:h-[400px] lg:h-full
+                  w-full object-cover
+                "
+              />
 
             </div>
 
-            {/* AMENITIES */}
-            <div className="mt-8">
+            {/* CONTENT */}
+            <div className="flex flex-col justify-center">
 
-              <h2 className="mb-4 text-xl font-bold text-gray-800">
-                Amenities
-              </h2>
+              {/* TITLE */}
+              <h1 className="text-2xl font-extrabold text-gray-800 sm:text-3xl lg:text-4xl">
+                {room?.name}
+              </h1>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* DESCRIPTION */}
+              <p className="mt-4 text-sm leading-relaxed text-gray-700 sm:text-base lg:text-lg">
+                {room?.description}
+              </p>
 
-                {room?.amenities ? (
+              {/* INFO BOXES */}
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
-                  <div
-                  
-                    className="
-                        flex items-center gap-3
-                        rounded-2xl
-                        border border-white/40
-                        bg-white/70
-                        px-4 py-3
-                        shadow-sm
-                        transition-all duration-300
-                        hover:scale-[1.02]
-                        hover:shadow-md
-                      "
-                  >
+                {/* FLOOR */}
+                <div className="rounded-2xl sm:rounded-3xl bg-white/60 p-4">
 
-                    {/* Checkbox Style */}
-                    <div
-                      className="
-                          flex h-5 w-5 items-center justify-center
-                          rounded-md bg-[#84B179]
-                          text-white text-xs font-bold
-                        "
-                    >
-                      ✓
-                    </div>
+                  <MapPin className="mb-2 text-[#84B179]" />
 
-                    {/* Amenity */}
-                    <span className="text-sm font-medium text-gray-700">
-                      {
-                       room?.amenities}
-                    </span>
-
-                  </div>
-
-                ) : (
-                  <p className="text-gray-500">
-                    No amenities available
+                  <p className="text-sm text-gray-500">
+                    Floor
                   </p>
-                )}
+
+                  <h3 className="font-bold text-gray-800">
+                    {room?.floor}
+                  </h3>
+
+                </div>
+
+                {/* CAPACITY */}
+                <div className="rounded-2xl sm:rounded-3xl bg-white/60 p-4">
+
+                  <Users className="mb-2 text-[#84B179]" />
+
+                  <p className="text-sm text-gray-500">
+                    Capacity
+                  </p>
+
+                  <h3 className="font-bold text-gray-800">
+                    {room?.capacity}
+                  </h3>
+
+                </div>
+
+                {/* HOURLY RATE */}
+                <div className="rounded-2xl sm:rounded-3xl bg-white/60 p-4">
+
+                  <Clock3 className="mb-2 text-[#84B179]" />
+
+                  <p className="text-sm text-gray-500">
+                    Hourly Rate
+                  </p>
+
+                  <h3 className="font-bold text-gray-800">
+                    ${room?.hourlyRate}
+                  </h3>
+
+                </div>
 
               </div>
 
-            </div>
+              {/* AMENITIES */}
+              <div className="mt-8">
 
-            {/* BOOK BUTTON */}
-            <div className="mt-8">
-              <OpenModal room={room} />
+                <h2 className="mb-4 text-lg font-bold text-gray-800 sm:text-xl">
+                  Amenities
+                </h2>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+                  {/* {room?.amenities?.length > 0 ? (
+                    room?.amenities?.map((amenity, index) => (
+                      <div
+                        key={index}
+                        className="
+                          flex items-center gap-3
+                          rounded-2xl
+                          border border-white/40
+                          bg-white/70
+                          px-4 py-3
+                          shadow-sm
+                          transition-all duration-300
+                          hover:scale-[1.02]
+                          hover:shadow-md
+                        "
+                      >
+
+                        <div
+                          className="
+                            flex h-5 w-5 items-center justify-center
+                            rounded-md bg-[#84B179]
+                            text-xs font-bold text-white
+                          "
+                        >
+                          ✓
+                        </div>
+
+                     
+                        <span className="text-sm font-medium text-gray-700">
+                          {amenity}
+                        </span>
+
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-500">
+                      No amenities available
+                    </p>
+                  )} */}
+
+                </div>
+
+              </div>
+
+              {/* BOOK BUTTON */}
+              <div className="mt-8 w-full sm:w-fit">
+                <OpenModal room={room} />
+              </div>
+
             </div>
+          </div>
+
+          {/* FEATURED ITEMS */}
+          <div className="mt-8 flex flex-wrap gap-4 border-t border-white/30 pt-8">
+
+            {featuredItems.map((item, i) => (
+              <div
+                key={i}
+                className="
+                  flex items-center gap-3
+                  rounded-2xl border border-slate-200
+                  bg-slate-100 px-4 py-3 sm:px-6
+                  text-sm font-bold text-slate-900 sm:text-base
+                  transition-all duration-300
+                  hover:bg-white hover:shadow-lg
+                "
+              >
+
+                <item.icon className="h-5 w-5 text-blue-600" />
+
+                <span>{item.label}</span>
+
+              </div>
+            ))}
 
           </div>
-        </div>
-
-        {/* FEATURED ITEMS */}
-        <div className="mt-8 flex flex-wrap gap-4 border-t border-white/30 pt-8">
-
-          {featuredItems.map((item, i) => (
-            <div
-              key={i}
-              className="
-                flex items-center gap-3
-                rounded-2xl border border-slate-200
-                bg-slate-100 px-6 py-3
-                font-bold text-slate-900
-                transition-all duration-300
-                hover:bg-white hover:shadow-lg
-              "
-            >
-
-              <item.icon className="h-5 w-5 text-blue-600" />
-
-              <span>{item.label}</span>
-
-            </div>
-          ))}
 
         </div>
-
       </div>
     </section>
   );

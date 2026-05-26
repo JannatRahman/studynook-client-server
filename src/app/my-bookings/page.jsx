@@ -4,7 +4,8 @@ import Link from 'next/link';
 
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
-import DeleteBookingButton from '@/components/DeleteBookingButton';
+import DeleteMyBookingButton from '@/components/DeleteMyBooking';
+
 
 
 
@@ -101,10 +102,10 @@ console.log(session?.user);
                 <div className="relative w-full md:w-72 h-48 sm:h-56 md:h-auto">
                   <Image
                     src={
-                      item?.roomId?.image ||
+                      item?.userId?.image ||
                       'https://images.unsplash.com/photo-1497366754035-f200968a6e72'
                     }
-                    alt={item?.roomId?.name || 'room'}
+                    alt={item?.userId?.name || 'room'}
                     fill
                     className="object-cover"
                   />
@@ -116,7 +117,7 @@ console.log(session?.user);
                   {/* Name + Date */}
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-800 line-clamp-1">
-                      {item?.roomId?.name}
+                      {item?.userId?.name}
                     </h3>
 
                     <p className="text-sm text-slate-500 mt-1">
@@ -131,13 +132,13 @@ console.log(session?.user);
                     </Chip>
 
                     <div className="text-slate-700 font-semibold">
-                       ${item?.roomId?.hourlyRate}/hr
+                       ${item?.userId?.hourlyRate}/hr
                     </div>
                   </div>
 
                   {/* Action */}
                   <div className="flex justify-end">
-                    <DeleteBookingButton  room={booking}/>
+                    <DeleteMyBookingButton  room={booking}/>
                   </div>
 
                 </div>

@@ -29,7 +29,7 @@ const ProfilePage = () => {
         />
         <p className='font-bold text-2xl'>{session?.user?.name}</p>
         <p className='text-muted'>{session?.user?.email}</p>
-        <UpdateUSerModal/>
+        {/* <UpdateUSerModal/> */}
       </Card>
     </div>
   );

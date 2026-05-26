@@ -46,19 +46,19 @@ export function EditModalForm({ room }) {
 
     console.log("UPDATED DATA:", booking);
 
-    try {
-      // Example API call
-      // const res = await fetch("/api/rooms", {
-      //   method: "PUT",
-      //   headers: { "content-type": "application/json" },
-      //   body: JSON.stringify(booking),
-      // });
+    // try {
+    
+    //   const res = await fetch("/api/rooms", {
+    //     method: "PATCH",
+    //     headers: { "content-type": "application/json" },
+    //     body: JSON.stringify(booking),
+    //   });
 
-      toast.success("Room updated successfully!");
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to update room");
-    }
+    //   toast.success("Room updated successfully!");
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error("Failed to update room");
+    // }
   };
 
   return (
@@ -80,7 +80,7 @@ export function EditModalForm({ room }) {
               <Modal.Heading>Edit Room</Modal.Heading>
             </Modal.Header>
 
-            {/* BODY */}
+       
             <Modal.Body className="p-6">
               <Surface>
                 <form
@@ -89,7 +89,7 @@ export function EditModalForm({ room }) {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    {/* ROOM NAME */}
+             
                     <div className="md:col-span-2">
                       <TextField defaultValue={name} name="name" isRequired>
                         <Label>Room Name</Label>
@@ -101,7 +101,7 @@ export function EditModalForm({ room }) {
                       </TextField>
                     </div>
 
-                    {/* DESCRIPTION */}
+                 
                     <div className="md:col-span-2">
                       <TextField
                         defaultValue={description}
@@ -117,7 +117,7 @@ export function EditModalForm({ room }) {
                       </TextField>
                     </div>
 
-                    {/* AMENITIES */}
+                  
                     <div className="md:col-span-2">
                       <Label className="block mb-3 font-semibold">
                         Amenities
@@ -151,7 +151,7 @@ export function EditModalForm({ room }) {
                       </div>
                     </div>
 
-                    {/* FLOOR */}
+                
                     <TextField
                       defaultValue={floor}
                       name="floor"
@@ -167,7 +167,7 @@ export function EditModalForm({ room }) {
                       <FieldError />
                     </TextField>
 
-                    {/* CAPACITY */}
+             
                     <TextField
                       defaultValue={capacity}
                       name="capacity"
@@ -182,7 +182,7 @@ export function EditModalForm({ room }) {
                       <FieldError />
                     </TextField>
 
-                    {/* HOURLY RATE */}
+     
                     <TextField
                       defaultValue={hourlyRate}
                       name="hourlyRate"
@@ -197,7 +197,7 @@ export function EditModalForm({ room }) {
                       <FieldError />
                     </TextField>
 
-                    {/* IMAGE */}
+             
                     <div className="md:col-span-2">
                       <TextField
                         defaultValue={image}
@@ -215,7 +215,7 @@ export function EditModalForm({ room }) {
                     </div>
                   </div>
 
-                  {/* BUTTONS */}
+            
                   <div className="flex justify-end gap-3 pt-4">
                     <Button
                       type="button"

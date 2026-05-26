@@ -157,7 +157,7 @@ export function OpenModal({room}) {
                     <Input placeholder="Enter your message"
                     className='bg-[#C7EABB]' />
                   </TextField>
-                  <p className="bg-[#C7EABB] p-2 rounded-xl  font-bold">Total Cost: {session?.room?.price}</p>
+                  <p className="bg-[#C7EABB] p-2 rounded-xl  font-bold">Total Cost: $10{session?.room?.price}</p>
                 </form>
               </Surface>
             </Modal.Body>
@@ -165,7 +165,7 @@ export function OpenModal({room}) {
               <Button slot="close" variant="secondary">
                 Cancel
               </Button>
-              <Button  onPress={handleBooking}slot="close">Send Message</Button>
+              <Button type="submit"  onPress={handleBooking}slot="close">Save</Button>
             </Modal.Footer>
           </Modal.Dialog>
         </Modal.Container>

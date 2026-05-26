@@ -1,9 +1,9 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import {Envelope} from "@gravity-ui/icons";
+
 import {Button, Input, Label, Modal, Surface, TextField} from "@heroui/react";
-import { Edit, User } from "lucide-react";
+import {  User } from "lucide-react";
 import { GrUpdate } from "react-icons/gr";
 
 export function UpdateUSerModal() {
