@@ -45,7 +45,7 @@ const handleLogin = async (e) => {
        
 
     if(error){
-      toast.warning('Registration Failed')
+      toast.warning('Login Failed')
       return;
     }
     {
@@ -56,7 +56,7 @@ const handleLogin = async (e) => {
           window.location.href = "/";
         }, 1500);
       }
-    // router.push('/')
+    router.push('/')
     
   }
   const handleGoogleSignin = async () => {

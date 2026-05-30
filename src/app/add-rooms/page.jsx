@@ -14,7 +14,7 @@ const AddRoomsPage = () => {
     const roomData = Object.fromEntries(formData.entries());
    const { data: session } = await authClient.getSession();
     roomData.userId = session.user.id;
-    console.log(roomData);
+    // console.log(roomData);
 
      const {data:tokenData} =await authClient.token();
 
@@ -31,7 +31,7 @@ const AddRoomsPage = () => {
 
     
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (res.ok) {
         toast.success("Room added successfully");
         router.push("/my-listings");

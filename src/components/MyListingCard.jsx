@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { Card, Button, Chip } from "@heroui/react";
 import React from "react";
+import Link from "next/link";
+import DeleteBookingButton from "./DeleteBookingButton";
 
 const MyListingCard = ({ room }) => {
   return (
@@ -21,7 +23,7 @@ const MyListingCard = ({ room }) => {
       {/* CONTENT */}
       <div className="p-4 space-y-3">
 
-       
+       <p className="font-bold text-lg">{room?.name}</p>
 
         {/* Description */}
         <p className="text-sm text-gray-500 line-clamp-2">
@@ -62,14 +64,32 @@ const MyListingCard = ({ room }) => {
         </div>
 
         {/* BUTTONS */}
-        <div className="flex gap-2 pt-3">
-          <Button size="sm" className="w-full bg-[#84B179] text-white">
-            View
-          </Button>
+        <div className="flex gap-10 items-center pt-3 justify-center">
+          <Link
+            href={`/all-rooms/${room?._id}`}
+            className="
+              flex 
+              
+              bg-[#84B179]
+              px-7 py-2
+              text-center
+              text-lg sm:text-base
+              font-semibold
+              text-white
+              shadow-lg shadow-[#84B179]/30
+              transition-all duration-300
+              hover:scale-[1.03]
+              hover:bg-[#739f68]
+              active:scale-95
+            "
+          >
+         View
+          </Link>
 
-          <Button size="sm" color="danger" className="w-full">
-            Delete
-          </Button>
+          
+          
+          <DeleteBookingButton room={room} />
+         
         </div>
 
       </div>

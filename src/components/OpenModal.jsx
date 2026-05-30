@@ -15,7 +15,7 @@ export function OpenModal({room}) {
 
 
   const [bookingDate, setBookingDate] = useState(null);
-  console.log(new Date(bookingDate));
+  // console.log(new Date(bookingDate));
     const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
 
@@ -62,38 +62,39 @@ export function OpenModal({room}) {
           router.push("/my-bookings")
   
       }
-  // const onSubmit = async (e) => {
-  //     e.preventDefault();
+  const onSubmit = async (e) => {
+      e.preventDefault();
   
-  //     const formData = new FormData(e.currentTarget);
+      const formData = new FormData(e.currentTarget);
   
-  //     const booking = {
-  //       name: formData.get("name"),
-  //       description: formData.get("description"),
+      const booking = {
+        name: formData.get("name"),
+        description: formData.get("description"),
   
        
-  //       floor: Number(formData.get("floor")) || 0,
-  //       capacity: Number(formData.get("capacity")) || 0,
-  //       hourlyRate: Number(formData.get("hourlyRate")) || 0,
+        floor: Number(formData.get("floor")) || 0,
+        capacity: Number(formData.get("capacity")) || 0,
+        hourlyRate: Number(formData.get("hourlyRate")) || 0,
   
-  //       image: formData.get("imageUrl"),
+        image: formData.get("image"),
   
-  //       amenities: formData.getAll("amenities"),
-  //     };
+        amenities: formData.getAll("amenities"),
+      };
   
-  //     console.log("UPDATED DATA:", booking);
+      // console.log("UPDATED DATA:", booking);
   
-  //     try {
+      try {
         
-  //       toast.success("Room updated successfully!");
-  //     } catch (error) {
-  //       console.log(error);
-  //       toast.error("Failed to update room");
-  //     }
-  //   };
+        toast.success("Room updated successfully!");
+      } catch (error) {
+        // console.log(error);
+        toast.error("Failed to update room");
+      }
+    };
   return (
      <Modal>
        <Button
+       onSubmit={onSubmit}
             
             className="bg-[#84B179] w-full font-bold shadow-lg mt-4"
            

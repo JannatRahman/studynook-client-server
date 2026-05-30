@@ -15,40 +15,30 @@ import { auth } from "@/lib/auth";
 import { EditModalForm } from "@/components/EditModal";
 import DeleteBookingButton from "@/components/DeleteBookingButton";
 import { OpenModal } from "@/components/OpenModal";
+import { fetchSingleRooms } from "@/lib/rooms/data";
 
 export const metadata = {
   title: "Room Details",
 };
 
-const fetchSingleRooms = async (id, token) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/studyrooms/${id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      cache: "no-store",
-    }
-  );
 
-  if (!res.ok) {
-    return null;
-  }
-
-  const data = await res.json();
-  return data;
-};
 
 const RoomDetailsPage = async ({ params }) => {
-  const { id } = await params;
+  const { id } =await params;
+  // console.log(id);
 
   // token
-  const { token } = await auth.api.getToken({
-    headers: await headers(),
-  });
+const { token } = await auth.api.getToken({
+  headers: await headers(),
+});
+// console.log(token);
 
   // fetch room
-  const room = await fetchSingleRooms(id, token);
+  const room =await fetchSingleRooms(id, token);
+  // console.log(room);
+  
+
+  
 
   const featuredItems = [
     {
@@ -198,13 +188,13 @@ const RoomDetailsPage = async ({ params }) => {
                   Amenities
                 </h2>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="">
 
-                  {/* {room?.amenities?.length > 0 ? (
-                    room?.amenities?.map((amenity, index) => (
-                      <div
-                        key={index}
-                        className="
+                  {room?.amenities?.length > 0 ? (
+
+                    <div
+
+                      className="
                           flex items-center gap-3
                           rounded-2xl
                           border border-white/40
@@ -215,30 +205,31 @@ const RoomDetailsPage = async ({ params }) => {
                           hover:scale-[1.02]
                           hover:shadow-md
                         "
-                      >
+                    >
 
-                        <div
-                          className="
+                      <div
+                        className="
                             flex h-5 w-5 items-center justify-center
                             rounded-md bg-[#84B179]
                             text-xs font-bold text-white
                           "
-                        >
-                          ✓
-                        </div>
-
-                     
-                        <span className="text-sm font-medium text-gray-700">
-                          {amenity}
-                        </span>
-
+                      >
+                        ✓
                       </div>
-                    ))
+
+
+                      <span className="gap-5 text-sm font-medium text-gray-700">
+                        {room.amenities}
+                      </span>
+
+                    </div>
+
+
                   ) : (
                     <p className="text-gray-500">
                       No amenities available
                     </p>
-                  )} */}
+                  )}
 
                 </div>
 

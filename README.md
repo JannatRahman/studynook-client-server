@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 StudyNook
 
-## Getting Started
+StudyNook is a modern online library room booking platform that allows students to find and reserve study rooms based on their preferences. Users can browse available rooms, view detailed information, create listings, manage bookings, and track room reservations through an intuitive and responsive interface.
 
-First, run the development server:
+## 🚀 Live Demo
+
+Live Site: [Add Your Live URL Here]
+
+## ✨ Features
+
+### Public Features
+
+* Browse all available study rooms
+* View room details
+* Responsive design for desktop, tablet, and mobile devices
+* User-friendly interface
+
+### Authenticated User Features
+
+* Secure user authentication
+* Book study rooms online
+* View booking history
+* Create new room listings
+* Edit existing room listings
+* Delete room listings
+* Manage personal bookings
+* Track how many students have booked a room
+* Access protected routes and private pages
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+* Next.js
+* React.js
+* Tailwind CSS
+* DaisyUI / HeroUI
+* Axios
+
+### Backend
+
+* Node.js
+* Express.js
+
+### Database
+
+* MongoDB
+
+### Authentication
+
+* Auth.js / NextAuth (Update based on your project)
+
+## 📂 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+StudyNook/
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── hooks/
+│   └── public/
+│
+├── backend/
+│   ├── routes/
+│   ├── middleware/
+│   ├── controllers/
+│   └── server.js
+│
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔐 Access Control
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Without Login
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Users can access:
 
-## Learn More
+* Home Page
+* All Rooms Page
+* Room Details
 
-To learn more about Next.js, take a look at the following resources:
+### After Login
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Users can access:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Home
+* All Rooms
+* Room Details
+* My Listings
+* My Bookings
+* Create Room
+* Edit Room
+* Delete Room
+* Booking Statistics
 
-## Deploy on Vercel
+## 📋 Core Functionalities
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Room Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Add new study rooms
+* Update room information
+* Delete room listings
+* View detailed room information
+
+### Booking System
+
+* Book available study rooms
+* Store booking information in MongoDB
+* Track room reservations
+* View personal booking history
+
+### User Dashboard
+
+* Manage listings
+* Manage bookings
+* Monitor room booking activity
+
+## ⚙️ Installation
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Backend Setup
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+## 🌱 Environment Variables
+
+Create a `.env.local` file for the frontend and a `.env` file for the backend.
+
+### Frontend
+
+```env
+NEXT_PUBLIC_API_URL=your_api_url
+```
+
+### Backend
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+AUTH_SECRET=your_secret_key
+```
+
+## 🎯 Future Improvements
+
+* Search and filtering options
+* Room availability calendar
+* Email notifications
+* User reviews and ratings
+* Admin dashboard
+* Real-time booking updates
+
+## 👨‍💻 Author
+
+Jannat Amila Rahman
+
+### Connect With Me
+
+GitHub: https://github.com/JannatRahman
+
+LinkedIn: Add Your LinkedIn Profile

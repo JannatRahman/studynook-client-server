@@ -7,11 +7,11 @@ const RoomsContainer = async ({ searchParams }) => {
 
   
   const searchTerm =await searchParams;
-  console.log(searchTerm);
+  // console.log(searchTerm);
 
 
   const rooms = await fetchRooms(searchTerm?.searchTerm);
-  console.log(rooms);
+  // console.log(rooms);
 
   return (
     <div>

@@ -4,16 +4,14 @@ import Link from 'next/link';
 
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
-import DeleteMyBookingButton from '@/components/DeleteMyBooking';
-
-
+import DeleteBookingButton from '@/components/DeleteBookingButton';
 
 
 export default async function MyBookingsPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-console.log(session?.user);
+// console.log(session?.user);
   if (!session?.user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] px-4">
@@ -51,6 +49,7 @@ console.log(session?.user);
   );
 
   const booking = await res.json();
+  // console.log(booking);
 
 
   return (
@@ -91,14 +90,14 @@ console.log(session?.user);
             </Link>
           </div>
         ) : (
-          /* Booking cards */
+         
           <div className="space-y-6">
             {booking?.map((item) => (
               <div
                 key={item?._id}
                 className="flex flex-col md:flex-row bg-white/55 backdrop-blur-2xl border border-white/30 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                {/* Image */}
+              
                 <div className="relative w-full md:w-72 h-48 sm:h-56 md:h-auto">
                   <Image
                     src={
@@ -117,7 +116,7 @@ console.log(session?.user);
                   {/* Name + Date */}
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-800 line-clamp-1">
-                      {item?.userId?.name}
+                      {item?.userId?.roomTitle}
                     </h3>
 
                     <p className="text-sm text-slate-500 mt-1">
@@ -132,13 +131,13 @@ console.log(session?.user);
                     </Chip>
 
                     <div className="text-slate-700 font-semibold">
-                       ${item?.userId?.hourlyRate}/hr
+                       ${item?.userId?.hourlyRate}5/hr
                     </div>
                   </div>
 
                   {/* Action */}
                   <div className="flex justify-end">
-                    <DeleteMyBookingButton  room={booking}/>
+                    <DeleteBookingButton room={booking}/>
                   </div>
 
                 </div>

@@ -11,7 +11,7 @@ const MyListings = async () => {
  const { token } = await auth.api.getToken({
     headers: await headers(),
   });
-console.log(session);
+// console.log(session);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/mystudyrooms/${session.user.id}`,
      {
@@ -23,7 +23,7 @@ console.log(session);
    
   );
   const listings = await res.json();
-  console.log(listings);
+  // console.log(listings);
 
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-10 py-10 bg-gray-50">

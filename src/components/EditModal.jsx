@@ -1,5 +1,6 @@
 "use client";
 
+import { editModal } from "@/lib/rooms/data";
 import {
   Button,
   FieldError,
@@ -12,9 +13,12 @@ import {
 } from "@heroui/react";
 
 import { Edit } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
+
 export function EditModalForm({ room }) {
+  const router = useRouter()
   const {
     capacity,
     name,
@@ -23,7 +27,9 @@ export function EditModalForm({ room }) {
     amenities,
     floor,
     hourlyRate,
+    _id
   } = room;
+  // console.log(room);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -31,10 +37,11 @@ export function EditModalForm({ room }) {
     const formData = new FormData(e.currentTarget);
 
     const booking = {
+
       name: formData.get("name"),
       description: formData.get("description"),
 
-     
+
       floor: Number(formData.get("floor")) || 0,
       capacity: Number(formData.get("capacity")) || 0,
       hourlyRate: Number(formData.get("hourlyRate")) || 0,
@@ -44,21 +51,15 @@ export function EditModalForm({ room }) {
       amenities: formData.getAll("amenities"),
     };
 
-    console.log("UPDATED DATA:", booking);
+    // console.log("UPDATED DATA:", booking);
 
-    // try {
-    
-    //   const res = await fetch("/api/rooms", {
-    //     method: "PATCH",
-    //     headers: { "content-type": "application/json" },
-    //     body: JSON.stringify(booking),
-    //   });
-
-    //   toast.success("Room updated successfully!");
-    // } catch (error) {
-    //   console.log(error);
-    //   toast.error("Failed to update room");
-    // }
+    const result = await editModal(_id, booking);
+    // console.log(result);
+    if(result.modifiedCount > 0) {
+     
+      router.refresh()
+      toast.success("Room updated successfully")
+    }
   };
 
   return (
@@ -80,7 +81,7 @@ export function EditModalForm({ room }) {
               <Modal.Heading>Edit Room</Modal.Heading>
             </Modal.Header>
 
-       
+
             <Modal.Body className="p-6">
               <Surface>
                 <form
@@ -89,7 +90,7 @@ export function EditModalForm({ room }) {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-             
+
                     <div className="md:col-span-2">
                       <TextField defaultValue={name} name="name" isRequired>
                         <Label>Room Name</Label>
@@ -101,7 +102,7 @@ export function EditModalForm({ room }) {
                       </TextField>
                     </div>
 
-                 
+
                     <div className="md:col-span-2">
                       <TextField
                         defaultValue={description}
@@ -117,7 +118,7 @@ export function EditModalForm({ room }) {
                       </TextField>
                     </div>
 
-                  
+
                     <div className="md:col-span-2">
                       <Label className="block mb-3 font-semibold">
                         Amenities
@@ -151,7 +152,7 @@ export function EditModalForm({ room }) {
                       </div>
                     </div>
 
-                
+
                     <TextField
                       defaultValue={floor}
                       name="floor"
@@ -167,7 +168,7 @@ export function EditModalForm({ room }) {
                       <FieldError />
                     </TextField>
 
-             
+
                     <TextField
                       defaultValue={capacity}
                       name="capacity"
@@ -182,7 +183,7 @@ export function EditModalForm({ room }) {
                       <FieldError />
                     </TextField>
 
-     
+
                     <TextField
                       defaultValue={hourlyRate}
                       name="hourlyRate"
@@ -197,7 +198,7 @@ export function EditModalForm({ room }) {
                       <FieldError />
                     </TextField>
 
-             
+
                     <div className="md:col-span-2">
                       <TextField
                         defaultValue={image}
@@ -215,7 +216,7 @@ export function EditModalForm({ room }) {
                     </div>
                   </div>
 
-            
+
                   <div className="flex justify-end gap-3 pt-4">
                     <Button
                       type="button"
