@@ -3,7 +3,7 @@
 
 import {  authClient, signIn } from "@/lib/auth-client";
 import {
-  Check,
+ 
   EyeClosed,
 } from "@gravity-ui/icons";
 import {
@@ -75,9 +75,9 @@ const handleLogin = async (e) => {
 
   return (
     <div className="min-h-screen bg-pink-100 flex items-center justify-center px-4 py-10 bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD]">
-      <Card className="w-full max-w-md sm:max-w-lg md:max-w-xl border shadow-xl rounded-2xl p-6 sm:p-8">
+      <Card className="w-full max-w-md sm:max-w-lg md:max-w-xl border shadow-xl rounded-2xl p-6 sm:p-8 animate__animated animate__pulse">
 
-        {/* Title */}
+       
         <h1 className="text-center text-4xl sm:text-3xl font-bold mb-6 ">
           Login
         </h1>
@@ -87,7 +87,7 @@ const handleLogin = async (e) => {
           className="flex flex-col gap-5 w-full space-y-3"
          
         >
-          {/* Email */}
+    
           <TextField
             isRequired
             name="email"
@@ -109,7 +109,7 @@ const handleLogin = async (e) => {
             <FieldError />
           </TextField>
 
-          {/* Password */}
+        
           <TextField
             isRequired
             name="password"
@@ -167,12 +167,12 @@ const handleLogin = async (e) => {
                 </div>
         </Form>
 
-        {/* Divider */}
+    
         <p className="text-center my-2 text-sm text-gray-500">
           Or
         </p>
 
-        {/* Google */}
+   
         <Button
           onClick={handleGoogleSignin}
           variant="outline"

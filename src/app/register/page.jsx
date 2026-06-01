@@ -42,7 +42,7 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen  flex items-center justify-center px-4 py-10 bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD]">
 
-      <Card className="w-full max-w-md sm:max-w-lg md:max-w-xl border shadow-xl rounded-2xl p-6 sm:p-8 ">
+      <Card className="w-full max-w-md sm:max-w-lg md:max-w-xl border shadow-xl rounded-2xl p-6 sm:p-8 animate__animated animate__pulse">
         <h3 className="font-black text-4xl text-center">Join Study <span className="text-[#84B179]">Nook</span></h3>
       <h1 className="text-center text-md font-semibold mb-6">
           Register Your Account

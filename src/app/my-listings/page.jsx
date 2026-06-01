@@ -3,6 +3,11 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
 
+export const metadata = {
+  title: "StudyNook-Listings",
+  
+};
+
 
 const MyListings = async () => {
   const session = await auth.api.getSession({
@@ -35,7 +40,7 @@ const MyListings = async () => {
       {listings?.length === 0 ? (
         <p className="text-gray-500">No listings found</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate__animated animate__zoomIn">
           {listings?.map((room) => (
             <MyListingCard key={room?._id} room={room} />
           ))}

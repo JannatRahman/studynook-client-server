@@ -7,7 +7,7 @@ import { Clock3, Users, BookOpenCheck } from 'lucide-react';
 
 const StudyRoomSection = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD] py-16 px-4">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD] py-16 px-4 animate__animated animate__bounce">
 
       
       <div className="absolute top-10 left-10 w-40 h-40 bg-white/30 rounded-full blur-3xl animate-pulse"></div>

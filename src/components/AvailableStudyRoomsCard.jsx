@@ -9,7 +9,7 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
     <div
       className="
         group relative w-full max-w-[340px] mx-auto overflow-hidden rounded[32px] border border-white/40 bg-gradient-to-b from-[#C7EABB] via-[#d9f0cb] to-[#E8F5BD] p-4 sm:p-5 md:p-6 shadow-[0_10px_40px_rgba(132,177,121,0.25)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:rotate-[1deg] hover:shadow-[0_20px_60px_rgba(132,177,121,0.35)] ">
-      {/* Floating blur effects */}
+    
       <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-white/30 blur-3xl"></div>
       <div className="absolute bottom-0 right-0 h-28 w-28 rounded-full bg-[#84B179]/20 blur-3xl"></div>
 
@@ -24,7 +24,7 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
         </div>
       </div>
 
-      {/* Image */}
+   
       <div className="relative z-10 overflow-hidden rounded-3xl">
         <Image
           src={studyrooms?.image}
@@ -34,7 +34,7 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
           className="h-[220px] w-full object-cover transition-transform duration-700 group-hover:scale-110" />
       </div>
 
-      {/* Content */}
+ 
       <div className="relative z-10 mt-5 space-y-4 text-center">
         <div className="space-y-2">
           <h2
@@ -48,7 +48,6 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
           </p>
         </div>
 
-        {/* Tags */}
         <div className="flex flex-wrap items-center justify-center gap-2">
           <span
             className="rounded-full bg-white/70 px-4 py-1.5 text-xs sm:text-sm
@@ -62,7 +61,7 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
           </span>
         </div>
 
-        {/* Amenities */}
+      
         <div className="flex flex-wrap justify-center gap-2">
           {studyrooms?.amenities?.slice(0, 3).map((item, index) => (
             <span
@@ -75,7 +74,7 @@ const AvailableStudyRoomsCard = ({ studyrooms }) => {
 
         </div>
 
-        {/* Buttons */}
+     
         <div className="flex items-center gap-3 pt-2">
           <Link
             href={`/all-rooms/${studyrooms?._id}`}

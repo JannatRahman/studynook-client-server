@@ -1,7 +1,7 @@
 'use client';
 
 
-import { UpdateUSerModal } from '@/components/UpdateUserModal';
+
 import { useSession } from '@/lib/auth-client';
 import { Card } from '@heroui/react';
 import Image from 'next/image';
@@ -15,7 +15,7 @@ const ProfilePage = () => {
               Study <span className="text-white">Nook</span>
             </h3>
             <p className=' text-center font-bold pt-3'>Update you profile here</p>
-      <Card className='max-w-96 mx-auto flex flex-col items-center p-10 mt-10 mb-10'>
+      <Card className='max-w-96 mx-auto flex flex-col items-center p-10 mt-10 mb-10 animate__animated animate__bounce'>
         <Image
           referrerPolicy="no-referrer"
           width={100}

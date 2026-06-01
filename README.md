@@ -4,7 +4,7 @@ StudyNook is a modern online library room booking platform that allows students 
 
 ## 🚀 Live Demo
 
-Live Site: [Add Your Live URL Here]
+Live Site:(https://study-nook-phi.vercel.app/)
 
 ## ✨ Features
 
@@ -35,7 +35,8 @@ Live Site: [Add Your Live URL Here]
 * React.js
 * Tailwind CSS
 * DaisyUI / HeroUI
-* Axios
+* Javascript ES+6
+
 
 ### Backend
 
@@ -48,26 +49,11 @@ Live Site: [Add Your Live URL Here]
 
 ### Authentication
 
-* Auth.js / NextAuth (Update based on your project)
+* Auth.js / BetterAuth 
 
 ## 📂 Project Structure
 
-```bash
-StudyNook/
-├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── hooks/
-│   └── public/
-│
-├── backend/
-│   ├── routes/
-│   ├── middleware/
-│   ├── controllers/
-│   └── server.js
-│
-└── README.md
-```
+
 
 ## 🔐 Access Control
 
@@ -77,7 +63,7 @@ Users can access:
 
 * Home Page
 * All Rooms Page
-* Room Details
+
 
 ### After Login
 
@@ -92,6 +78,7 @@ Users can access:
 * Edit Room
 * Delete Room
 * Booking Statistics
+* Profile
 
 ## 📋 Core Functionalities
 
@@ -109,18 +96,15 @@ Users can access:
 * Track room reservations
 * View personal booking history
 
-### User Dashboard
 
-* Manage listings
-* Manage bookings
-* Monitor room booking activity
 
 ## ⚙️ Installation
 
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone server https://github.com/JannatRahman/studynook-server
+git clone client https://github.com/JannatRahman/studynook-client-server
 ```
 
 ### Frontend Setup
@@ -145,17 +129,6 @@ Create a `.env.local` file for the frontend and a `.env` file for the backend.
 
 ### Frontend
 
-```env
-NEXT_PUBLIC_API_URL=your_api_url
-```
-
-### Backend
-
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-AUTH_SECRET=your_secret_key
-```
 
 ## 🎯 Future Improvements
 
@@ -174,4 +147,4 @@ Jannat Amila Rahman
 
 GitHub: https://github.com/JannatRahman
 
-LinkedIn: Add Your LinkedIn Profile
+LinkedIn: (https://www.linkedin.com/in/jannat-amila-rahman/)

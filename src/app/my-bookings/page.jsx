@@ -4,7 +4,11 @@ import Link from 'next/link';
 
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
-import DeleteBookingButton from '@/components/DeleteBookingButton';
+
+export const metadata = {
+  title: "StudyNook-Bookings",
+  
+};
 
 
 export default async function MyBookingsPage() {
@@ -15,7 +19,7 @@ export default async function MyBookingsPage() {
   if (!session?.user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] px-4">
-        <div className="bg-white/70 backdrop-blur-xl shadow-2xl border border-white/30 rounded-3xl p-8 text-center max-w-md w-full">
+        <div className="bg-white/70 backdrop-blur-xl shadow-2xl border border-white/30 rounded-3xl p-8 text-center max-w-md w-full ">
           <h2 className="text-2xl font-bold text-slate-800 mb-3">
             User not logged in
           </h2>
@@ -49,19 +53,18 @@ export default async function MyBookingsPage() {
   );
 
   const booking = await res.json();
-  // console.log(booking);
+  console.log(booking);
 
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-10">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-10 ">
 
-      {/* Background blur shapes */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-200/30 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
-        {/* Header */}
+    
         <div className="mb-10 text-center md:text-left">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-800">
             My Bookings
@@ -91,32 +94,32 @@ export default async function MyBookingsPage() {
           </div>
         ) : (
          
-          <div className="space-y-6">
+          <div className="space-y-6 ">
             {booking?.map((item) => (
               <div
                 key={item?._id}
-                className="flex flex-col md:flex-row bg-white/55 backdrop-blur-2xl border border-white/30 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="flex flex-col md:flex-row bg-white/55 backdrop-blur-2xl border border-white/30 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 animate__animated animate__slideInRight"
               >
               
                 <div className="relative w-full md:w-72 h-48 sm:h-56 md:h-auto">
                   <Image
                     src={
-                      item?.userId?.image ||
+                      item?.image ||
                       'https://images.unsplash.com/photo-1497366754035-f200968a6e72'
                     }
-                    alt={item?.userId?.name || 'room'}
+                    alt={item?.title || 'room'}
                     fill
                     className="object-cover"
                   />
                 </div>
 
-                {/* Content */}
+          
                 <div className="flex-1 p-5 flex flex-col justify-between gap-4">
 
-                  {/* Name + Date */}
+                
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-slate-800 line-clamp-1">
-                      {item?.userId?.roomTitle}
+                      {item?.roomTitle}
                     </h3>
 
                     <p className="text-sm text-slate-500 mt-1">
@@ -124,20 +127,20 @@ export default async function MyBookingsPage() {
                     </p>
                   </div>
 
-                  {/* Info */}
+               
                   <div className="flex flex-wrap items-center gap-4 text-sm">
                     <Chip color="success" variant="flat" size="sm">
                       Active
                     </Chip>
 
                     <div className="text-slate-700 font-semibold">
-                       ${item?.userId?.hourlyRate}5/hr
+                       ${item?.totalCost}/hr
                     </div>
                   </div>
 
-                  {/* Action */}
+                
                   <div className="flex justify-end">
-                    <DeleteBookingButton room={booking}/>
+                  Cancel
                   </div>
 
                 </div>

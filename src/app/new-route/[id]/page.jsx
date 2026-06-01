@@ -5,18 +5,17 @@ import {
   Clock3,
   MapPin,
   Users,
-
+  Users2,
 } from "lucide-react";
 
-
-
-import DeleteBookingButton from "@/components/DeleteBookingButton";
-import { fetchSingleRooms } from "@/lib/rooms/data";
-import { OpenModal } from "@/components/OpenModal";
+import { RxCountdownTimer } from "react-icons/rx";
 import { EditModalForm } from "@/components/EditModal";
+import DeleteBookingButton from "@/components/DeleteBookingButton";
+import { OpenModal } from "@/components/OpenModal";
+import { fetchSingleRooms } from "@/lib/rooms/data";
 
 export const metadata = {
-  title: "StudyNook-Details",
+  title: "Details",
 };
 
 
@@ -28,16 +27,16 @@ const RoomDetailsPage = async ({ params }) => {
   const room = await fetchSingleRooms(id);
   console.log(room);
 
-  // const featuredItems = [
-  //   {
-  //     icon: RxCountdownTimer,
-  //     label: room?.hourlyRate || "N/A",
-  //   },
-  //   {
-  //     icon: Users2,
-  //     label: `${room?.bookingCount || 0} Students`,
-  //   },
-  // ];
+  const featuredItems = [
+    {
+      icon: RxCountdownTimer,
+      label: room?.hourlyRate || "N/A",
+    },
+    {
+      icon: Users2,
+      label: `${room?.bookingCount || 0} Students`,
+    },
+  ];
   if (!room) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -207,7 +206,7 @@ const RoomDetailsPage = async ({ params }) => {
 
           <div className="mt-8 flex flex-wrap gap-4 border-t border-white/30 pt-8">
 
-            {/* {featuredItems.map((item, i) => (
+            {featuredItems.map((item, i) => (
               <div
                 key={i}
                 className="
@@ -225,7 +224,7 @@ const RoomDetailsPage = async ({ params }) => {
                 <span>{item.label}</span>
 
               </div>
-            ))} */}
+            ))}
 
           </div>
 

@@ -6,6 +6,8 @@ import { Button, Card, FieldError, Input, Label, TextArea, TextField } from "@he
 import { toast } from "react-toastify";
 
 
+
+
 const AddRoomsPage = () => {
 
   const onSubmit =async (e) => {
@@ -56,13 +58,12 @@ const AddRoomsPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] px-3 sm:px-6 lg:px-10 py-10">
 
-      <Card className="w-full max-w-5xl mx-auto p-6 rounded-2xl shadow-xl">
+      <Card className="w-full max-w-5xl mx-auto p-6 rounded-2xl shadow-xl animate__animated animate__pulse">
 
         <form
          onSubmit={onSubmit}
           className="space-y-6">
 
-          {/* ROOM NAME */}
           <TextField name="name" isRequired>
             <Label>Room Name</Label>
             <Input
@@ -72,7 +73,7 @@ const AddRoomsPage = () => {
             <FieldError />
           </TextField>
 
-          {/* DESCRIPTION */}
+     
           <TextField name="description" isRequired>
             <Label>Description</Label>
             <TextArea
@@ -82,7 +83,7 @@ const AddRoomsPage = () => {
             <FieldError />
           </TextField>
 
-          {/* AMENITIES */}
+   
           <div>
             <Label>Amenities</Label>
 
@@ -108,35 +109,34 @@ const AddRoomsPage = () => {
             </div>
           </div>
 
-          {/* FLOOR */}
+     
           <TextField name="floor" isRequired>
             <Label>Floor</Label>
             <Input type="text" placeholder="e.g. 2nd Floor" />
             <FieldError />
           </TextField>
 
-          {/* CAPACITY */}
+      
           <TextField name="capacity" isRequired>
             <Label>Capacity</Label>
             <Input type="number" placeholder="e.g. 4" />
             <FieldError />
           </TextField>
 
-          {/* HOURLY RATE */}
+    
           <TextField name="hourlyRate" isRequired>
             <Label>Hourly Rate</Label>
             <Input type="number" placeholder="e.g. 50" />
             <FieldError />
           </TextField>
 
-          {/* IMAGE */}
+    
           <TextField name="image" isRequired>
             <Label>Image URL</Label>
             <Input type="url" placeholder="https://image.com/photo.jpg" />
             <FieldError />
           </TextField>
 
-          {/* SUBMIT */}
           <Button
             type="submit"
             className="w-full bg-[#84B179] text-white font-semibold py-3 rounded-xl"

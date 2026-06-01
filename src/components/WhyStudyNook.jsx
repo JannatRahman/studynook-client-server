@@ -39,15 +39,15 @@ export default function WhyStudyNook() {
   return (
     <section className="py-16 px-6 bg-gradient-to-b from-[#C7EABB] to-[#E8F5BD]">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 animate__animated animate__slideInLeft">
                 Why Study <span className="text-[#84B179]">Nook</span>
               </h2>
-        <p className="text-gray-600 mt-3">
+        <p className="text-gray-600 mt-3 animate__animated animate__bounce">
           A better space for better focus and better results.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto animate__animated animate__slideInRight">
         {features.map((item, index) => (
           <div
             key={index}

@@ -9,17 +9,16 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden bg-[#84B179]">
 
-      {/* Background Glow */}
+     
       <div className="absolute top-10 left-10 w-72 h-72 "></div>
       <div className="absolute bottom-10 right-10 w-80 h-80 "></div>
 
-      {/* Main Container */}
+     
       <div className="relative max-w-7xl mx-auto px-6 py-16">
 
-        {/* Top Grid */}
+     
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-          {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
             <Image
@@ -37,7 +36,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Contact */}
+         
           <div>
             <h3 className="text-sm font-bold text-black mb-4 flex items-center gap-1">
               <LiaLinkSolid className="text-xl"/> Links
@@ -51,7 +50,7 @@ const Footer = () => {
           </ul>
           </div>
 
-          {/* Social */}
+        
           <div>
             <h3 className="text-sm font-bold text-black mb-4 flex gap-2 items-center">
               <Contact/> Contact information
@@ -75,7 +74,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Terms */}
+     
           <div>
             <h3 className="text-sm font-bold text-black mb-4 flex items-center gap-1">
                <LucideGalleryThumbnails/> Legal
@@ -101,10 +100,10 @@ const Footer = () => {
 
         </div>
 
-        {/* Divider */}
+      
         <div className="mt-12 h-px bg-white/50"></div>
 
-        {/* Bottom */}
+     
         <div className="mt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-3">
 
           <p>

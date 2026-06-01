@@ -68,12 +68,12 @@ export function EditModalForm({ room }) {
         Edit
       </Button>
 
-      <Modal.Backdrop>
+      {/* <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-xl">
             <Modal.CloseTrigger />
 
-            {/* HEADER */}
+          
             <Modal.Header>
               <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
                 <Edit className="size-5" />
@@ -239,7 +239,7 @@ export function EditModalForm({ room }) {
             </Modal.Body>
           </Modal.Dialog>
         </Modal.Container>
-      </Modal.Backdrop>
+      </Modal.Backdrop> */}
     </Modal>
   );
 }

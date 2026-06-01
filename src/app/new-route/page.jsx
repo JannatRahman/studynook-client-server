@@ -1,11 +1,5 @@
 import RoomsContainer from "@/components/RoomsContainer";
 
-
-export const metadata = {
-  title: "StudyNook-All Rooms",
- 
-};
-
 const AllRoomsPage = ({searchParams}) => {
   return (
     <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
@@ -20,7 +14,6 @@ const AllRoomsPage = ({searchParams}) => {
             md:text-5xl
             font-bold
             text-gray-800
-            animate__animated animate__fadeIn
           "
         >
           All Rooms
@@ -33,7 +26,6 @@ const AllRoomsPage = ({searchParams}) => {
             text-sm
             sm:text-base
             text-gray-600
-            animate__animated animate__fadeIn
           "
         >
           Discover peaceful, modern, and fully equipped study spaces

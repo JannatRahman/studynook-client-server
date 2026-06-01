@@ -16,10 +16,10 @@ const RoomsContainer = async ({ searchParams }) => {
   return (
     <div>
 
-      {/* Search Bar */}
+     
       <SearchBar search={searchTerm} />
 
-      {/* Rooms Grid */}
+ 
       <div
         className="
           grid
@@ -29,6 +29,7 @@ const RoomsContainer = async ({ searchParams }) => {
           gap-6
           md:gap-8
           mt-8
+          animate__animated animate__pulse
         "
       >
 
