@@ -2,21 +2,23 @@
 import RoomsCard from "@/components/RoomsCard";
 import { SearchBar } from "@/components/SearchBar";
 import { fetchRooms } from "@/lib/rooms/data";
+import FilterSidebar from "./FilterSideBar";
 
 const RoomsContainer = async ({ searchParams }) => {
 
   
   const searchTerm =await searchParams;
-  // console.log(searchTerm);
+  
 
 
   const rooms = await fetchRooms(searchTerm?.searchTerm);
-  // console.log(rooms);
+ 
 
   return (
     <div>
 
      
+      <FilterSidebar></FilterSidebar> 
       <SearchBar search={searchTerm} />
 
  

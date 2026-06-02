@@ -64,7 +64,7 @@ const Banner = () => {
                 className="w-12 sm:w-14 md:w-[60px] h-auto hover:rotate-12 transition-transform duration-300"
               />
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-800 leading-none">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-800 leading-none animate__animated animate__shake">
                 Study <span className="text-[#84B179]">Nook</span>
               </h2>
             </Link>
@@ -146,7 +146,7 @@ const Banner = () => {
             <div className="absolute w-[180px] h-[180px] sm:w-[260px] sm:h-[260px] md:w-[320px] md:h-[320px] bg-[#84B179]/20 rounded-full blur-3xl animate-pulse"></div>
 
         
-            <div className="relative z-10 w-full max-w-[220px] sm:max-w-[320px] md:max-w-[420px] lg:max-w-[500px]">
+            <div className="relative z-10 w-full max-w-[220px] sm:max-w-[320px] md:max-w-[420px] lg:max-w-[500px] animate__animated animate__zoomIn">
               <LottieFiles />
             </div>
 

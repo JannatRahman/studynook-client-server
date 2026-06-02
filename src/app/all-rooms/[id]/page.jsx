@@ -14,6 +14,7 @@ import DeleteBookingButton from "@/components/DeleteBookingButton";
 import { fetchSingleRooms } from "@/lib/rooms/data";
 import { OpenModal } from "@/components/OpenModal";
 import { EditModalForm } from "@/components/EditModal";
+import { TiMediaRecordOutline } from "react-icons/ti";
 
 export const metadata = {
   title: "StudyNook-Details",
@@ -23,21 +24,21 @@ export const metadata = {
 
 const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
-  console.log(id);
+  // console.log(id);
 
   const room = await fetchSingleRooms(id);
-  console.log(room);
+  // console.log(room);
 
-  // const featuredItems = [
-  //   {
-  //     icon: RxCountdownTimer,
-  //     label: room?.hourlyRate || "N/A",
-  //   },
-  //   {
-  //     icon: Users2,
-  //     label: `${room?.bookingCount || 0} Students`,
-  //   },
-  // ];
+  const featuredItems = [
+    {
+     
+      label: room?.hourlyRate || "N/A",
+    },
+    {
+     
+      label: `${room?.bookingCount || 0} Students`,
+    },
+  ];
   if (!room) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -207,7 +208,7 @@ const RoomDetailsPage = async ({ params }) => {
 
           <div className="mt-8 flex flex-wrap gap-4 border-t border-white/30 pt-8">
 
-            {/* {featuredItems.map((item, i) => (
+            {featuredItems.map((item, i) => (
               <div
                 key={i}
                 className="
@@ -220,12 +221,12 @@ const RoomDetailsPage = async ({ params }) => {
                 "
               >
 
-                <item.icon className="h-5 w-5 text-blue-600" />
+                {/* <item.icon className="h-5 w-5 text-blue-600" /> */}
 
                 <span>{item.label}</span>
 
               </div>
-            ))} */}
+            ))}
 
           </div>
 

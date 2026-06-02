@@ -4,21 +4,24 @@ import { editModal } from "@/lib/rooms/data";
 import {
   Button,
   FieldError,
-  Input,
+  Form,
+  input,
   Label,
   Modal,
   Surface,
   TextArea,
   TextField,
 } from "@heroui/react";
-
 import { Edit } from "lucide-react";
+// import { Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
+import { useState } from "react";
 
 export function EditModalForm({ room }) {
-  const router = useRouter()
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const {
     capacity,
     name,
@@ -27,219 +30,224 @@ export function EditModalForm({ room }) {
     amenities,
     floor,
     hourlyRate,
-    _id
+    _id,
   } = room;
-  // console.log(room);
+
+  // console.log(room, name);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    try {
+      setLoading(true);
 
-    const booking = {
+      const formData = new FormData(e.currentTarget);
 
-      name: formData.get("name"),
-      description: formData.get("description"),
+      const updatedRoom = {
+        name: formData.get("name"),
+        description: formData.get("description"),
 
+        floor: Number(formData.get("floor")) || 0,
+        capacity: Number(formData.get("capacity")) || 0,
+        hourlyRate: Number(formData.get("hourlyRate")) || 0,
 
-      floor: Number(formData.get("floor")) || 0,
-      capacity: Number(formData.get("capacity")) || 0,
-      hourlyRate: Number(formData.get("hourlyRate")) || 0,
+        image: formData.get("imageUrl"),
 
-      image: formData.get("imageUrl"),
+        amenities: formData.getAll("amenities"),
+      };
 
-      amenities: formData.getAll("amenities"),
-    };
+      console.log("UPDATED ROOM:", updatedRoom);
 
-    // console.log("UPDATED DATA:", booking);
+      const result = await editModal(_id, updatedRoom);
 
-    const result = await editModal(_id, booking);
-    // console.log(result);
-    if(result.modifiedCount > 0) {
-     
-      router.refresh()
-      toast.success("Room updated successfully")
+      console.log("UPDATE RESULT:", result);
+
+      if (result?.modifiedCount > 0) {
+        toast.success("Room updated successfully!");
+        router.refresh();
+        return;
+      }
+
+      toast.info("No changes were made.");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update room");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Modal>
-      <Button className="bg-[#84B179] rounded-none font-semibold">
-        Edit
-      </Button>
+      <Button className="bg-[#84B179] rounded-none font-semibold">Edit</Button>
 
-      {/* <Modal.Backdrop>
+      <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-xl">
             <Modal.CloseTrigger />
 
-          
             <Modal.Header>
               <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
                 <Edit className="size-5" />
               </Modal.Icon>
+
               <Modal.Heading>Edit Room</Modal.Heading>
             </Modal.Header>
 
-
             <Modal.Body className="p-6">
-              <Surface>
-                <form
-                  onSubmit={onSubmit}
-                  className="p-6 space-y-6"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-
-                    <div className="md:col-span-2">
-                      <TextField defaultValue={name} name="name" isRequired>
-                        <Label>Room Name</Label>
-                        <Input
-                          className="bg-[#C7EABB] rounded-xl"
-                          placeholder="Enter room name"
-                        />
-                        <FieldError />
-                      </TextField>
-                    </div>
-
-
-                    <div className="md:col-span-2">
-                      <TextField
-                        defaultValue={description}
-                        name="description"
-                        isRequired
-                      >
-                        <Label>Description</Label>
-                        <TextArea
-                          className="bg-[#C7EABB] rounded-xl min-h-[120px]"
-                          placeholder="Describe the room..."
-                        />
-                        <FieldError />
-                      </TextField>
-                    </div>
-
-
-                    <div className="md:col-span-2">
-                      <Label className="block mb-3 font-semibold">
-                        Amenities
-                      </Label>
-
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {[
-                          "Projector",
-                          "Conference Table",
-                          "WiFi",
-                          "AC",
-                          "Whiteboard",
-                          "Snacks",
-                          "Library Access",
-                          "Smart TV",
-                          "Desk Lamp",
-                        ].map((item) => (
-                          <label
-                            key={item}
-                            className="flex items-center gap-2 bg-[#C7EABB] p-3 rounded-xl"
-                          >
-                            <input
-                              type="checkbox"
-                              name="amenities"
-                              value={item}
-                              defaultChecked={amenities?.includes(item)}
-                            />
-                            <span className="text-sm">{item}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-
-
+              <Form onSubmit={onSubmit} className="space-y-6 p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="md:col-span-2">
                     <TextField
-                      defaultValue={floor}
-                      name="floor"
-                      type="number"
+                      // defaultValue={name}
                       isRequired
                     >
-                      <Label>Floor</Label>
-                      <Input
-                        type="number"
-                        className="bg-[#C7EABB] rounded-xl"
-                        placeholder="e.g. 2"
+                      <Label>Room Name</Label>
+
+                      <input
+                        className="bg-[#C7EABB] rounded-xl px-3 py-2"
+                        placeholder="Enter room name"
+                        name="name"
+                        defaultValue={name}
                       />
+
                       <FieldError />
                     </TextField>
+                  </div>
 
-
+                  <div className="md:col-span-2">
                     <TextField
-                      defaultValue={capacity}
+                      name="description"
+                      defaultValue={description}
+                      isRequired
+                    >
+                      <Label>Description</Label>
+
+                      <TextArea
+                        className="bg-[#C7EABB] rounded-xl min-h-[120px]"
+                        placeholder="Describe the room"
+                      />
+
+                      <FieldError />
+                    </TextField>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <Label className="block mb-3 font-semibold">
+                      Amenities
+                    </Label>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {[
+                        "Projector",
+                        "Conference Table",
+                        "WiFi",
+                        "AC",
+                        "Whiteboard",
+                        "Snacks",
+                        "Library Access",
+                        "Smart TV",
+                        "Desk Lamp",
+                      ].map((item) => (
+                        <label
+                          key={item}
+                          className="flex items-center gap-2 bg-[#C7EABB] p-3 rounded-xl"
+                        >
+                          <input
+                            type="checkbox"
+                            name="amenities"
+                            value={item}
+                            defaultChecked={amenities?.includes(item)}
+                          />
+
+                          <span className="text-sm">{item}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <TextField isRequired>
+                    <Label>Floor</Label>
+
+                    <select
+                      name="floor"
+                      defaultValue={String(floor)}
+                      className="w-full bg-[#C7EABB] rounded-xl px-3 py-2 border"
+                    >
+                      <option value="1">1st Floor</option>
+                      <option value="2">2nd Floor</option>
+                      <option value="3">3rd Floor</option>
+                    </select>
+
+                    <FieldError />
+                  </TextField>
+
+                  <TextField type="number" isRequired>
+                    <Label>Capacity</Label>
+
+                    <input
                       name="capacity"
                       type="number"
-                      isRequired
-                    >
-                      <Label>Capacity</Label>
-                      <Input
-                        type="number"
-                        className="bg-[#C7EABB] rounded-xl"
-                      />
-                      <FieldError />
-                    </TextField>
+                      defaultValue={String(capacity)}
+                      className="bg-[#C7EABB] rounded-xl px-3 py-2"
+                    />
 
+                    <FieldError />
+                  </TextField>
 
-                    <TextField
-                      defaultValue={hourlyRate}
+                  <TextField type="number" isRequired>
+                    <Label>Hourly Rate</Label>
+
+                    <input
                       name="hourlyRate"
                       type="number"
-                      isRequired
-                    >
-                      <Label>Hourly Rate</Label>
-                      <Input
-                        type="number"
-                        className="bg-[#C7EABB] rounded-xl"
+                      defaultValue={String(hourlyRate)}
+                      className="bg-[#C7EABB] rounded-xl px-3 py-2"
+                    />
+
+                    <FieldError />
+                  </TextField>
+
+                  <div className="md:col-span-2">
+                    <TextField isRequired>
+                      <Label>Image URL</Label>
+
+                      <input
+                        type="url"
+                        name="imageUrl"
+                        defaultValue={image}
+                        className="bg-[#C7EABB] rounded-xl px-3 py-2"
+                        placeholder="https://example.com/image.jpg"
                       />
+
                       <FieldError />
                     </TextField>
-
-
-                    <div className="md:col-span-2">
-                      <TextField
-                        defaultValue={image}
-                        name="imageUrl"
-                        isRequired
-                      >
-                        <Label>Image URL</Label>
-                        <Input
-                          type="url"
-                          className="bg-[#C7EABB] rounded-xl"
-                          placeholder="https://example.com/image.jpg"
-                        />
-                        <FieldError />
-                      </TextField>
-                    </div>
                   </div>
+                </div>
 
+                <div className="flex justify-end gap-3 pt-4">
+                  <Button
+                    type="button"
+                    slot="close"
+                    variant="secondary"
+                    className="rounded-xl"
+                  >
+                    Cancel
+                  </Button>
 
-                  <div className="flex justify-end gap-3 pt-4">
-                    <Button
-                      type="button"
-                      slot="close"
-                      variant="secondary"
-                      className="rounded-xl"
-                    >
-                      Cancel
-                    </Button>
-
-                    <Button
-                      type="submit"
-                      className="rounded-xl bg-[#84B179] text-white"
-                    >
-                      Submit
-                    </Button>
-                  </div>
-                </form>
-              </Surface>
+                  <Button
+                    type="submit"
+                    isDisabled={loading}
+                    className="rounded-xl bg-[#84B179] text-white px-3 py-2"
+                  >
+                    {loading ? "Updating..." : "Update Room"}
+                  </Button>
+                </div>
+              </Form>
             </Modal.Body>
           </Modal.Dialog>
         </Modal.Container>
-      </Modal.Backdrop> */}
+      </Modal.Backdrop>
     </Modal>
   );
 }

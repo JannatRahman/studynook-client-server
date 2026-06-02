@@ -7,6 +7,8 @@ export const metadata = {
 };
 
 const AllRoomsPage = ({searchParams}) => {
+
+  
   return (
     <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16 xl:px-24">
 
@@ -43,6 +45,7 @@ const AllRoomsPage = ({searchParams}) => {
       </div>
 
       <RoomsContainer searchParams={searchParams}/>
+      
 
     </section>
   );

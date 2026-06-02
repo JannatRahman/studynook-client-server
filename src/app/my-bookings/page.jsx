@@ -53,7 +53,7 @@ export default async function MyBookingsPage() {
   );
 
   const booking = await res.json();
-  console.log(booking);
+  // console.log(booking);
 
 
   return (

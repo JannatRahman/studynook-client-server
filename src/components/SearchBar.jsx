@@ -9,9 +9,10 @@ export function SearchBar({ search }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // initial value
+ 
   const [searchData, setSearchData] = useState(search || '');
 
+  
   const handleSearch = () => {
 
     const params = new URLSearchParams(searchParams.toString());

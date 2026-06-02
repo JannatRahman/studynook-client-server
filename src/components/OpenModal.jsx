@@ -26,7 +26,7 @@ export function OpenModal({ room }) {
 
   const { data: session } = useSession();
   const router = useRouter();
-  console.log(room);
+  // console.log(room);
 
 
   const handleBooking = async (e) => {
@@ -77,9 +77,9 @@ const totalCost = totalHours * room.hourlyRate;
         message,
       };
 
-    console.log(totalCost);
+    // console.log(totalCost);
 
-      console.log("Booking Data:", bookingData);
+      // console.log("Booking Data:", bookingData);
 
       const res = await fetch(
         `${ apiUrl }/booking/${ room?._id }`,
@@ -103,7 +103,7 @@ const totalCost = totalHours * room.hourlyRate;
   toast.success("Booking successful!");
   router.push("/my-bookings");
 } catch (error) {
-  console.error(error);
+  // console.error(error);
   toast.error("Something went wrong");
 }
   };

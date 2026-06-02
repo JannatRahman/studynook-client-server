@@ -22,10 +22,10 @@ export const metadata = {
 
 const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
-  console.log(id);
+  // console.log(id);
 
   const room = await fetchSingleRooms(id);
-  console.log(room);
+  // console.log(room);
 
   const featuredItems = [
     {
