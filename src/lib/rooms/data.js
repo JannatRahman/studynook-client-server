@@ -3,13 +3,26 @@
 import { headers } from "next/headers";
 import { auth } from "../auth";
 
-export const fetchRooms = async(searchTerm = '') => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/studyrooms?search=${searchTerm }`,
-    {cache: 'no-store'}
-     
-  )
-  const data =await res.json();
-  return data ;
+export const fetchRooms = async (params = {}) => {
+  const query = new URLSearchParams();
+
+  if (params.search) query.set("search", params.search);
+
+  if (params.minPrice) query.set("minPrice", params.minPrice);
+  if (params.maxPrice) query.set("maxPrice", params.maxPrice);
+
+  if (params.minFloor) query.set("minFloor", params.minFloor);
+  if (params.maxFloor) query.set("maxFloor", params.maxFloor);
+
+  if (params.amenities) query.set("amenities", params.amenities);
+
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/studyRooms?${query.toString()}`,
+    { cache: "no-store" }
+  );
+  
+  return res.json();
 };
 
 export const editModal = async ( _id, booking) => {

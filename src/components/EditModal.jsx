@@ -56,11 +56,11 @@ export function EditModalForm({ room }) {
         amenities: formData.getAll("amenities"),
       };
 
-      console.log("UPDATED ROOM:", updatedRoom);
+      // console.log("UPDATED ROOM:", updatedRoom);
 
       const result = await editModal(_id, updatedRoom);
 
-      console.log("UPDATE RESULT:", result);
+      // console.log("UPDATE RESULT:", result);
 
       if (result?.modifiedCount > 0) {
         toast.success("Room updated successfully!");
@@ -70,7 +70,7 @@ export function EditModalForm({ room }) {
 
       toast.info("No changes were made.");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("Failed to update room");
     } finally {
       setLoading(false);

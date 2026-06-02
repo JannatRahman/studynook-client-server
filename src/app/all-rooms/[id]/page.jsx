@@ -27,15 +27,15 @@ const RoomDetailsPage = async ({ params }) => {
   // console.log(id);
 
   const room = await fetchSingleRooms(id);
-  // console.log(room);
+  console.log(room);
 
   const featuredItems = [
     {
-     
+
       label: room?.hourlyRate || "N/A",
     },
     {
-     
+
       label: `${room?.bookingCount || 0} Students`,
     },
   ];
@@ -182,18 +182,15 @@ const RoomDetailsPage = async ({ params }) => {
                 </h2>
 
                 <div className="flex flex-wrap gap-3">
-                  {room?.amenities?.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2 rounded-xl bg-white/70 px-4 py-2"
-                    >
-                      <div className="flex h-5 w-5 items-center justify-center rounded-md bg-[#84B179] text-white text-xs">
-                        ✓
-                      </div>
 
-                      <span>{item}</span>
+                  <div
+                    className="flex items-center gap-2 rounded-xl bg-white/70 px-4 py-2">
+                    <div className="flex h-5 w-5 items-center justify-center rounded-md bg-[#84B179] text-white text-xs">
+                      ✓
                     </div>
-                  ))}
+                    <span >{room?.amenities}</span>
+                  </div>
+
                 </div>
 
               </div>
