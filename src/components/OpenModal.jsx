@@ -70,6 +70,7 @@ const totalCost = totalHours * room.hourlyRate;
         roomPrice: room?.hourlyRate,
         image: room?.image,
         totalCost,
+        status: 'active',
 
         bookingDate,
         startTime,

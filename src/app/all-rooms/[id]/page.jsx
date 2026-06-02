@@ -188,7 +188,7 @@ const RoomDetailsPage = async ({ params }) => {
                     <div className="flex h-5 w-5 items-center justify-center rounded-md bg-[#84B179] text-white text-xs">
                       ✓
                     </div>
-                    <span >{room?.amenities}</span>
+                    <span className="flex gap-3">{room?.amenities}</span>
                   </div>
 
                 </div>

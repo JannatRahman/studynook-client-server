@@ -1,9 +1,11 @@
+
 import Image from 'next/image';
 import { Button, Chip } from '@heroui/react';
 import Link from 'next/link';
 
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
+import CancelButton from '@/components/CancelButton';
 
 export const metadata = {
   title: "StudyNook-Bookings",
@@ -11,12 +13,16 @@ export const metadata = {
 };
 
 
+
 export default async function MyBookingsPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 // console.log(session?.user);
+
+
   if (!session?.user) {
+    
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] px-4">
         <div className="bg-white/70 backdrop-blur-xl shadow-2xl border border-white/30 rounded-3xl p-8 text-center max-w-md w-full ">
@@ -54,7 +60,7 @@ export default async function MyBookingsPage() {
 
   const booking = await res.json();
   // console.log(booking);
-
+  
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#84B179] via-[#C7EABB] to-[#E8F5BD] py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-10 ">
@@ -140,7 +146,7 @@ export default async function MyBookingsPage() {
 
                 
                   <div className="flex justify-end">
-                  Cancel
+                 <CancelButton item={item}/>
                   </div>
 
                 </div>

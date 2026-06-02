@@ -23,6 +23,7 @@ export default function BookingButton({ room }) {
             studentName: session?.user?.name,
             studentEmail: session?.user?.email,
             RoomTitle: room?.name,
+            status: 'active',
             
         }
 
@@ -42,16 +43,12 @@ export default function BookingButton({ room }) {
             return
         }
         router.push("/my-bookings")
-
-
-
-
     }
     return (
         <Button
             
             className="bg-[#84B179] w-full font-bold shadow-lg mt-4"
-            onPress={handleBooking}
+            onClick={handleBooking}
         >
             Book Now
         </Button>
